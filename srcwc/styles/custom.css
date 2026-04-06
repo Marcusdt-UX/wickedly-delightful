@@ -1,0 +1,184 @@
+/* Neumorphic Styles */
+.neumorphic-inset {
+  box-shadow: 
+    inset 4px 4px 8px rgba(0, 0, 0, 0.6),
+    inset -4px -4px 8px rgba(155, 17, 30, 0.1);
+}
+
+.neumorphic-outset {
+  box-shadow: 
+    6px 6px 12px rgba(0, 0, 0, 0.8),
+    -6px -6px 12px rgba(155, 17, 30, 0.05);
+}
+
+/* Glow Effects */
+.glow-red {
+  box-shadow: 0 0 20px rgba(155, 17, 30, 0.5);
+}
+
+.glow-red-strong {
+  box-shadow: 
+    0 0 20px rgba(155, 17, 30, 0.8),
+    0 0 40px rgba(155, 17, 30, 0.5),
+    0 0 60px rgba(155, 17, 30, 0.3);
+}
+
+.text-glow-red {
+  text-shadow: 
+    0 0 10px rgba(155, 17, 30, 0.8),
+    0 0 20px rgba(155, 17, 30, 0.5);
+}
+
+/* Hover Glow Animation */
+.hover-glow {
+  transition: all 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 
+    0 0 15px rgba(155, 17, 30, 0.6),
+    0 0 30px rgba(155, 17, 30, 0.4),
+    inset 0 0 10px rgba(155, 17, 30, 0.2);
+}
+
+/* Pulse Animation */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(155, 17, 30, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(155, 17, 30, 0.7);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* SVG Stroke Animation */
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.draw-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw 2s ease-in-out forwards;
+}
+
+.filigree-draw .draw-path {
+  animation: draw 2s ease-in-out forwards;
+}
+
+/* Parallax Container */
+.parallax-container {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Debossed Text Effect */
+.debossed-text {
+  text-shadow: 
+    1px 1px 2px rgba(255, 255, 255, 0.05),
+    -1px -1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Embossed Effect */
+.embossed {
+  box-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.8),
+    -2px -2px 4px rgba(155, 17, 30, 0.1),
+    inset 1px 1px 2px rgba(155, 17, 30, 0.1);
+}
+
+/* Button Neumorphic Styles */
+.btn-neumorphic {
+  box-shadow: 
+    4px 4px 8px rgba(0, 0, 0, 0.7),
+    -2px -2px 6px rgba(155, 17, 30, 0.05);
+  transition: all 0.2s ease;
+}
+
+.btn-neumorphic:hover {
+  box-shadow: 
+    inset 3px 3px 6px rgba(0, 0, 0, 0.8),
+    inset -2px -2px 4px rgba(155, 17, 30, 0.1),
+    0 0 20px rgba(155, 17, 30, 0.5);
+}
+
+.btn-neumorphic:active {
+  box-shadow: 
+    inset 4px 4px 8px rgba(0, 0, 0, 0.9),
+    inset -2px -2px 4px rgba(155, 17, 30, 0.05);
+}
+
+/* Card with ornate border effect */
+.ornate-card {
+  position: relative;
+  background: #1a1a1a;
+  box-shadow: 
+    0 8px 16px rgba(0, 0, 0, 0.8),
+    inset 0 1px 0 rgba(155, 17, 30, 0.1);
+  transition: all 0.3s ease;
+}
+
+.ornate-card:hover {
+  box-shadow: 
+    0 12px 24px rgba(0, 0, 0, 0.9),
+    0 0 30px rgba(155, 17, 30, 0.3),
+    inset 0 1px 0 rgba(155, 17, 30, 0.2);
+  transform: translateY(-4px);
+}
+
+/* Input Neumorphic Styles */
+.input-neumorphic {
+  box-shadow: 
+    inset 3px 3px 6px rgba(0, 0, 0, 0.8),
+    inset -2px -2px 4px rgba(155, 17, 30, 0.05);
+  transition: all 0.2s ease;
+}
+
+.input-neumorphic:focus {
+  box-shadow: 
+    inset 4px 4px 8px rgba(0, 0, 0, 0.9),
+    inset -2px -2px 4px rgba(155, 17, 30, 0.1),
+    0 0 10px rgba(155, 17, 30, 0.3);
+}
+
+/* Fade in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Stagger delay utilities */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Letter spacing for luxury feel */
+.tracking-luxury {
+  letter-spacing: 0.15em;
+}

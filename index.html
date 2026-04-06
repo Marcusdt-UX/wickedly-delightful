@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wickedly Delightful Scents — Handcrafted Gothic Wax Melts</title>
+  <meta name="description" content="Handcrafted wax melts with gothic elegance. Immerse yourself in the dark allure of our unique fragrances." />
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- Grain texture overlay -->
+  <div class="grain-overlay" aria-hidden="true">
+    <svg width="100%" height="100%">
+      <filter id="noise">
+        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch" />
+        <feColorMatrix type="saturate" values="0" />
+      </filter>
+      <rect width="100%" height="100%" filter="url(#noise)" />
+    </svg>
+  </div>
+
+  <!-- ========== NAVIGATION ========== -->
+  <nav class="nav" id="nav">
+    <div class="gradient-line"></div>
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <img src="assets/logo.png" alt="Wickedly Delightful Scents" class="nav-logo-img" />
+        <span class="nav-logo-text text-glow-red">Wickedly Delightful</span>
+      </a>
+
+      <div class="nav-links" id="nav-links">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#scents" class="nav-link">Scents</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="nav-mobile" id="nav-mobile">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#scents" class="nav-link">Scents</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </div>
+    <div class="gradient-line"></div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="hero">
+    <div class="leather-texture" aria-hidden="true"></div>
+    <div class="hero-bg" aria-hidden="true">
+      <img
+        src="https://images.unsplash.com/photo-1762190674294-58e4a7a40a35?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXglMjBtZWx0cyUyMGNhbmRsZXMlMjBkYXJrfGVufDF8fHx8MTc3NDcyMzMyOXww&ixlib=rb-4.1.0&q=80&w=1080"
+        alt=""
+        loading="eager"
+      />
+    </div>
+
+    <!-- Ornate scrollwork frame — business card style -->
+    <div class="ornate-frame ornate-frame--hero" aria-hidden="true">
+      <div class="ornate-frame-border"></div>
+      <div class="ornate-frame-border-inner"></div>
+
+      <!-- Corner scrollwork flourishes -->
+      <svg class="scroll-corner scroll-corner--tl" viewBox="0 0 100 100" fill="none">
+        <path d="M5 95 L5 30 Q5 5, 30 5 L95 5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <path d="M5 95 Q5 60, 20 45 Q35 30, 50 25" stroke="currentColor" stroke-width="1" fill="none" opacity="0.7"/>
+        <path d="M5 95 Q10 70, 25 55 Q40 40, 60 35" stroke="currentColor" stroke-width="0.8" fill="none" opacity="0.5"/>
+        <!-- Spiral curl at corner -->
+        <path d="M15 15 Q25 8, 30 15 Q35 22, 28 28 Q21 34, 15 28 Q9 22, 15 15Z" stroke="currentColor" stroke-width="1" fill="none" opacity="0.8"/>
+        <circle cx="22" cy="22" r="2" fill="currentColor" opacity="0.6"/>
+        <!-- Vine tendrils -->
+        <path d="M30 5 Q38 12, 35 20 Q32 28, 38 32" stroke="currentColor" stroke-width="0.8" fill="none" opacity="0.5"/>
+        <path d="M5 30 Q12 38, 20 35 Q28 32, 32 38" stroke="currentColor" stroke-width="0.8" fill="none" opacity="0.5"/>
+        <!-- Leaf shapes -->
+        <path d="M42 8 Q48 4, 52 10 Q48 14, 42 8Z" fill="currentColor" opacity="0.3"/>
+        <path d="M8 42 Q4 48, 10 52 Q14 48, 8 42Z" fill="currentColor" opacity="0.3"/>
+        <!-- Small accent dots -->
+        <circle cx="55" cy="7" r="1.5" fill="currentColor" opacity="0.4"/>
+        <circle cx="7" cy="55" r="1.5" fill="currentColor" opacity="0.4"/>
+        <circle cx="40" cy="18" r="1" fill="currentColor" opacity="0.35"/>
+        <circle cx="18" cy="40" r="1" fill="currentColor" opacity="0.35"/>
+      </svg>
+      <svg class="scroll-corner scroll-corner--tr" viewBox="0 0 100 100" fill="none">
+        <path d="M5 95 L5 30 Q5 5, 30 5 L95 5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <path d="M5 95 Q5 60, 20 45 Q35 30, 50 25" stroke="currentColor" stroke-width="1" fill="none" opacity="0.7"/>
+        <path d="M5 95 Q10 70, 25 55 Q40 40, 60 35" stroke="currentColor" stroke-width="0.8" fill="none" opacity="0.5"/>
+        <path d="M15 15 Q25 8, 30 15 Q35 22, 28 28 Q21 34, 15 28 Q9 22, 15 15Z" stroke="currentColor" stroke-width="1" fill="none" opacity="0.8"/>
+        <circle cx="22" cy="22" r="2" fill="currentColor" opacity="0.6"/>
+        <path d="M30 5 Q38 12, 35 20 Q32 28, 38 32" stroke="currentColor" stroke-width="0.8" fill="none" opacity="0.5"/>
+        <path d="M5 30 Q12 38, 20 35 Q28 32, 32 38" stroke="currentColor" stroke-width="0.8" fill="none" opacity="0.5"/>
+        <path d="M42 8 Q48 4, 52 10 Q48 14, 42 8Z" fill="currentColor" opacity="0.3"/>
+        <path d="M8 42 Q4 48, 10 52 Q14 48, 8 42Z" fill="currentColor" opacity="0.3"/>
+        <circle cx="55" cy="7" r="1.5" fill="currentColor" opacity="0.4"/>
+        <circle cx="7" cy="55" r="1.5" fill="currentColor" opacity="0.4"/>
+      </svg>
+      <svg class="scroll-corner scroll-corner--bl" viewBox="0 0 100 100" fill="none">
+        <path d="M5 95 L5 30 Q5 5, 30 5 L95 5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <path d="M5 95 Q5 60, 20 45 Q35 30, 50 25" stroke="currentColor" stroke-width="1" fill="none" opacity="0.7"/>
+        <path d="M5 95 Q10 70, 25 55 Q40 40, 60 35" stroke="currentColor" stroke-width="0.8" fill="none" opacity="0.5"/>
+        <path d="M15 15 Q25 8, 30 15 Q35 22, 28 28 Q21 34, 15 28 Q9 22, 15 15Z" stroke="currentColor" stroke-width="1" fill="none" opacity="0.8"/>
+        <circle cx="22" cy="22" r="2" fill="currentColor" opacity="0.6"/>
+        <path d="M30 5 Q38 12, 35 20 Q32 28, 38 32" stroke="currentColor" stroke-width="0.8" fill="none" opacity="0.5"/>
+        <path d="M5 30 Q12 38, 20 35 Q28 32, 32 38" stroke="currentColor" stroke-width="0.8" fill="none" opacity="0.5"/>
+        <path d="M42 8 Q48 4, 52 10 Q48 14, 42 8Z" fill="currentColor" opacity="0.3"/>
+        <path d="M8 42 Q4 48, 10 52 Q14 48, 8 42Z" fill="currentColor" opacity="0.3"/>
+        <circle cx="55" cy="7" r="1.5" fill="currentColor" opacity="0.4"/>
+        <circle cx="7" cy="55" r="1.5" fill="currentColor" opacity="0.4"/>
+      </svg>
+      <svg class="scroll-corner scroll-corner--br" viewBox="0 0 100 100" fill="none">
+        <path d="M5 95 L5 30 Q5 5, 30 5 L95 5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <path d="M5 95 Q5 60, 20 45 Q35 30, 50 25" stroke="currentColor" stroke-width="1" fill="none" opacity="0.7"/>
+        <path d="M5 95 Q10 70, 25 55 Q40 40, 60 35" stroke="currentColor" stroke-width="0.8" fill="none" opacity="0.5"/>
+        <path d="M15 15 Q25 8, 30 15 Q35 22, 28 28 Q21 34, 15 28 Q9 22, 15 15Z" stroke="currentColor" stroke-width="1" fill="none" opacity="0.8"/>
+        <circle cx="22" cy="22" r="2" fill="currentColor" opacity="0.6"/>
+        <path d="M30 5 Q38 12, 35 20 Q32 28, 38 32" stroke="currentColor" stroke-width="0.8" fill="none" opacity="0.5"/>
+        <path d="M5 30 Q12 38, 20 35 Q28 32, 32 38" stroke="currentColor" stroke-width="0.8" fill="none" opacity="0.5"/>
+        <path d="M42 8 Q48 4, 52 10 Q48 14, 42 8Z" fill="currentColor" opacity="0.3"/>
+        <path d="M8 42 Q4 48, 10 52 Q14 48, 8 42Z" fill="currentColor" opacity="0.3"/>
+        <circle cx="55" cy="7" r="1.5" fill="currentColor" opacity="0.4"/>
+        <circle cx="7" cy="55" r="1.5" fill="currentColor" opacity="0.4"/>
+      </svg>
+
+      <!-- Edge scrollwork along frame sides -->
+      <div class="frame-edge frame-edge--top">
+        <svg viewBox="0 0 800 20" preserveAspectRatio="none" fill="none">
+          <path d="M0 10 Q50 0, 100 10 Q150 20, 200 10 Q250 0, 300 10 Q350 20, 400 10 Q450 0, 500 10 Q550 20, 600 10 Q650 0, 700 10 Q750 20, 800 10" stroke="currentColor" stroke-width="1" opacity="0.6"/>
+          <path d="M0 10 Q50 3, 100 10 Q150 17, 200 10 Q250 3, 300 10 Q350 17, 400 10 Q450 3, 500 10 Q550 17, 600 10 Q650 3, 700 10 Q750 17, 800 10" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="frame-edge frame-edge--bottom">
+        <svg viewBox="0 0 800 20" preserveAspectRatio="none" fill="none">
+          <path d="M0 10 Q50 0, 100 10 Q150 20, 200 10 Q250 0, 300 10 Q350 20, 400 10 Q450 0, 500 10 Q550 20, 600 10 Q650 0, 700 10 Q750 20, 800 10" stroke="currentColor" stroke-width="1" opacity="0.6"/>
+          <path d="M0 10 Q50 3, 100 10 Q150 17, 200 10 Q250 3, 300 10 Q350 17, 400 10 Q450 3, 500 10 Q550 17, 600 10 Q650 3, 700 10 Q750 17, 800 10" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="frame-edge frame-edge--left">
+        <svg viewBox="0 0 20 800" preserveAspectRatio="none" fill="none">
+          <path d="M10 0 Q0 50, 10 100 Q20 150, 10 200 Q0 250, 10 300 Q20 350, 10 400 Q0 450, 10 500 Q20 550, 10 600 Q0 650, 10 700 Q20 750, 10 800" stroke="currentColor" stroke-width="1" opacity="0.6"/>
+        </svg>
+      </div>
+      <div class="frame-edge frame-edge--right">
+        <svg viewBox="0 0 20 800" preserveAspectRatio="none" fill="none">
+          <path d="M10 0 Q0 50, 10 100 Q20 150, 10 200 Q0 250, 10 300 Q20 350, 10 400 Q0 450, 10 500 Q20 550, 10 600 Q0 650, 10 700 Q20 750, 10 800" stroke="currentColor" stroke-width="1" opacity="0.6"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Filigree top -->
+    <div class="hero-filigree hero-filigree--top" aria-hidden="true">
+      <svg class="filigree" viewBox="0 0 400 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="fg1" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="currentColor" stop-opacity="0" />
+            <stop offset="50%" stop-color="currentColor" stop-opacity="1" />
+            <stop offset="100%" stop-color="currentColor" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+        <path d="M 200 50 Q 180 30, 160 50 Q 180 70, 200 50 Q 220 30, 240 50 Q 220 70, 200 50" stroke="url(#fg1)" stroke-width="1.5" fill="none" class="draw-path" />
+        <path d="M 160 50 Q 140 45, 120 50 Q 100 55, 80 50 Q 60 45, 40 50 Q 20 55, 0 50" stroke="url(#fg1)" stroke-width="1.2" fill="none" class="draw-path" style="animation-delay:0.2s" />
+        <path d="M 240 50 Q 260 45, 280 50 Q 300 55, 320 50 Q 340 45, 360 50 Q 380 55, 400 50" stroke="url(#fg1)" stroke-width="1.2" fill="none" class="draw-path" style="animation-delay:0.2s" />
+        <circle cx="200" cy="50" r="4" fill="currentColor" opacity="0.8" />
+        <circle cx="160" cy="50" r="3" fill="currentColor" opacity="0.6" />
+        <circle cx="240" cy="50" r="3" fill="currentColor" opacity="0.6" />
+        <circle cx="120" cy="50" r="2.5" fill="currentColor" opacity="0.5" />
+        <circle cx="280" cy="50" r="2.5" fill="currentColor" opacity="0.5" />
+        <circle cx="80" cy="50" r="2" fill="currentColor" opacity="0.4" />
+        <circle cx="320" cy="50" r="2" fill="currentColor" opacity="0.4" />
+      </svg>
+    </div>
+
+    <!-- Hero content -->
+    <div class="hero-content">
+      <div class="hero-logo pulse-glow">
+        <img src="assets/logo.png" alt="Wickedly Delightful Scents" />
+      </div>
+
+      <h1 class="hero-title debossed-text tracking-luxury">
+        Wickedly <span class="accent text-glow-red">Delightful</span>
+      </h1>
+
+      <!-- Filigree divider -->
+      <svg class="filigree" viewBox="0 0 400 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="fg2" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="currentColor" stop-opacity="0" />
+            <stop offset="50%" stop-color="currentColor" stop-opacity="1" />
+            <stop offset="100%" stop-color="currentColor" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+        <path d="M 200 50 Q 180 30, 160 50 Q 180 70, 200 50 Q 220 30, 240 50 Q 220 70, 200 50" stroke="url(#fg2)" stroke-width="1.5" fill="none" />
+        <path d="M 160 50 Q 140 45, 120 50 Q 100 55, 80 50 Q 60 45, 40 50 Q 20 55, 0 50" stroke="url(#fg2)" stroke-width="1.2" fill="none" />
+        <path d="M 240 50 Q 260 45, 280 50 Q 300 55, 320 50 Q 340 45, 360 50 Q 380 55, 400 50" stroke="url(#fg2)" stroke-width="1.2" fill="none" />
+        <circle cx="200" cy="50" r="4" fill="currentColor" opacity="0.8" />
+        <circle cx="160" cy="50" r="3" fill="currentColor" opacity="0.6" />
+        <circle cx="240" cy="50" r="3" fill="currentColor" opacity="0.6" />
+      </svg>
+
+      <p class="hero-subtitle">Wickedly Delightful Scents</p>
+      <p class="hero-desc">
+        Immerse yourself in the dark allure of our handcrafted wax melts.
+        Each scent tells a story of mystery, romance, and timeless elegance.
+      </p>
+      <a href="#scents" class="hero-cta btn-neumorphic">Explore Our Scents</a>
+    </div>
+
+    <!-- Filigree bottom -->
+    <div class="hero-filigree hero-filigree--bottom" aria-hidden="true">
+      <svg class="filigree" viewBox="0 0 400 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="fg3" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="currentColor" stop-opacity="0" />
+            <stop offset="50%" stop-color="currentColor" stop-opacity="1" />
+            <stop offset="100%" stop-color="currentColor" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+        <path d="M 200 50 Q 180 30, 160 50 Q 180 70, 200 50 Q 220 30, 240 50 Q 220 70, 200 50" stroke="url(#fg3)" stroke-width="1.5" fill="none" class="draw-path" />
+        <path d="M 160 50 Q 140 45, 120 50 Q 100 55, 80 50 Q 60 45, 40 50 Q 20 55, 0 50" stroke="url(#fg3)" stroke-width="1.2" fill="none" class="draw-path" style="animation-delay:0.2s" />
+        <path d="M 240 50 Q 260 45, 280 50 Q 300 55, 320 50 Q 340 45, 360 50 Q 380 55, 400 50" stroke="url(#fg3)" stroke-width="1.2" fill="none" class="draw-path" style="animation-delay:0.2s" />
+        <circle cx="200" cy="50" r="4" fill="currentColor" opacity="0.8" />
+        <circle cx="160" cy="50" r="3" fill="currentColor" opacity="0.6" />
+        <circle cx="240" cy="50" r="3" fill="currentColor" opacity="0.6" />
+      </svg>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M12 5v14M5 12l7 7 7-7" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- Scrollwork divider: Hero → About -->
+  <div class="scrollwork-divider" aria-hidden="true">
+    <svg viewBox="0 0 1200 80" fill="none" preserveAspectRatio="xMidYMid meet">
+      <!-- Center ornament -->
+      <path d="M600 40 Q580 20, 560 40 Q580 60, 600 40 Q620 20, 640 40 Q620 60, 600 40" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.8"/>
+      <circle cx="600" cy="40" r="3" fill="currentColor" opacity="0.7"/>
+      <!-- Inner curls -->
+      <path d="M555 40 Q545 30, 535 40 Q545 50, 555 40" stroke="currentColor" stroke-width="1.2" fill="none" opacity="0.6"/>
+      <path d="M645 40 Q655 30, 665 40 Q655 50, 645 40" stroke="currentColor" stroke-width="1.2" fill="none" opacity="0.6"/>
+      <!-- Extending scrollwork left -->
+      <path d="M535 40 Q510 35, 485 40 Q460 45, 435 40 Q410 35, 385 40 Q360 45, 335 40 Q310 35, 285 40 Q260 45, 235 40 Q210 35, 185 40 Q160 45, 135 40 Q110 35, 85 40 Q60 45, 35 40 Q15 38, 0 40" stroke="currentColor" stroke-width="1" fill="none" opacity="0.5"/>
+      <!-- Second line left (lace effect) -->
+      <path d="M535 40 Q515 28, 495 35 Q475 42, 455 35 Q435 28, 415 35 Q395 42, 375 35 Q355 28, 335 35 Q315 42, 295 35 Q275 28, 255 35 Q235 42, 215 35 Q195 28, 175 35 Q155 42, 135 35 Q115 28, 95 35 Q75 42, 55 35 Q35 28, 15 35" stroke="currentColor" stroke-width="0.6" fill="none" opacity="0.3"/>
+      <!-- Extending scrollwork right -->
+      <path d="M665 40 Q690 35, 715 40 Q740 45, 765 40 Q790 35, 815 40 Q840 45, 865 40 Q890 35, 915 40 Q940 45, 965 40 Q990 35, 1015 40 Q1040 45, 1065 40 Q1090 35, 1115 40 Q1140 45, 1165 40 Q1185 38, 1200 40" stroke="currentColor" stroke-width="1" fill="none" opacity="0.5"/>
+      <!-- Second line right -->
+      <path d="M665 40 Q685 28, 705 35 Q725 42, 745 35 Q765 28, 785 35 Q805 42, 825 35 Q845 28, 865 35 Q885 42, 905 35 Q925 28, 945 35 Q965 42, 985 35 Q1005 28, 1025 35 Q1045 42, 1065 35 Q1085 28, 1105 35 Q1125 42, 1145 35 Q1165 28, 1185 35" stroke="currentColor" stroke-width="0.6" fill="none" opacity="0.3"/>
+      <!-- Accent dots along scrollwork -->
+      <circle cx="485" cy="40" r="2" fill="currentColor" opacity="0.4"/>
+      <circle cx="385" cy="40" r="1.5" fill="currentColor" opacity="0.35"/>
+      <circle cx="285" cy="40" r="1.5" fill="currentColor" opacity="0.3"/>
+      <circle cx="715" cy="40" r="2" fill="currentColor" opacity="0.4"/>
+      <circle cx="815" cy="40" r="1.5" fill="currentColor" opacity="0.35"/>
+      <circle cx="915" cy="40" r="1.5" fill="currentColor" opacity="0.3"/>
+    </svg>
+  </div>
+
+  <!-- Lace edge: top of About -->
+  <div class="lace-edge" aria-hidden="true">
+    <svg viewBox="0 0 1200 40" preserveAspectRatio="none" fill="none">
+      <defs>
+        <pattern id="lace-scallop" x="0" y="0" width="60" height="40" patternUnits="userSpaceOnUse">
+          <path d="M0 20 Q15 5, 30 20 Q45 35, 60 20" stroke="currentColor" stroke-width="1.2" fill="none" opacity="0.5"/>
+          <circle cx="30" cy="20" r="2" fill="currentColor" opacity="0.3"/>
+          <circle cx="15" cy="12" r="1.2" fill="currentColor" opacity="0.2"/>
+          <circle cx="45" cy="12" r="1.2" fill="currentColor" opacity="0.2"/>
+          <path d="M15 20 Q22 15, 30 20 Q38 25, 45 20" stroke="currentColor" stroke-width="0.6" fill="none" opacity="0.25"/>
+        </pattern>
+      </defs>
+      <rect width="1200" height="40" fill="url(#lace-scallop)"/>
+    </svg>
+  </div>
+
+  <!-- ========== ABOUT ========== -->
+  <section class="section about" id="about">
+    <div class="leather-texture" aria-hidden="true"></div>
+    <div class="section-inner">
+
+      <div class="section-header reveal">
+        <svg class="filigree" viewBox="0 0 400 100" fill="none" aria-hidden="true">
+          <defs><linearGradient id="fg4" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="currentColor" stop-opacity="0"/><stop offset="50%" stop-color="currentColor" stop-opacity="1"/><stop offset="100%" stop-color="currentColor" stop-opacity="0"/></linearGradient></defs>
+          <path d="M 200 50 Q 180 30, 160 50 Q 180 70, 200 50 Q 220 30, 240 50 Q 220 70, 200 50" stroke="url(#fg4)" stroke-width="1.5" fill="none"/>
+          <path d="M 160 50 Q 140 45, 120 50 Q 100 55, 80 50 Q 60 45, 40 50 Q 20 55, 0 50" stroke="url(#fg4)" stroke-width="1.2" fill="none"/>
+          <path d="M 240 50 Q 260 45, 280 50 Q 300 55, 320 50 Q 340 45, 360 50 Q 380 55, 400 50" stroke="url(#fg4)" stroke-width="1.2" fill="none"/>
+          <circle cx="200" cy="50" r="4" fill="currentColor" opacity="0.8"/><circle cx="160" cy="50" r="3" fill="currentColor" opacity="0.6"/><circle cx="240" cy="50" r="3" fill="currentColor" opacity="0.6"/>
+        </svg>
+        <h2 class="section-title debossed-text tracking-luxury">
+          Our <span class="accent text-glow-red">Story</span>
+        </h2>
+        <p class="section-subtitle">Where darkness meets elegance, and every scent tells a story</p>
+      </div>
+
+      <!-- Story: image + text -->
+      <div class="about-grid">
+        <div class="about-image ornate-card ornate-corners reveal">
+          <span class="corner-bl"></span>
+          <span class="corner-br"></span>
+          <img
+            src="https://images.unsplash.com/photo-1585641689080-2e530457803b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzY2VudGVkJTIwd2F4JTIwY2FuZGxlJTIwYnVybmluZ3xlbnwxfHx8fDE3NzQ3MjMzMjl8MA&ixlib=rb-4.1.0&q=80&w=1080"
+            alt="Handcrafted scented candles burning"
+            loading="lazy"
+          />
+          <div class="about-image-overlay"></div>
+        </div>
+
+        <div class="about-text reveal reveal-delay-1">
+          <div class="about-accent-line"></div>
+          <h2>Born from <span class="accent text-glow-red">Passion</span></h2>
+          <p>
+            Wickedly Delightful Scents began with a simple love for the mysterious and beautiful.
+            We believe that fragrance should be more than just a pleasant scent — it
+            should be an experience, a journey into the depths of elegance and allure.
+          </p>
+          <p>
+            Each wax melt is handcrafted with care, combining premium soy wax with
+            carefully selected fragrances that evoke the gothic aesthetic we hold dear.
+          </p>
+          <div class="about-accent-line"></div>
+        </div>
+      </div>
+
+      <!-- Values -->
+      <div class="values-grid">
+        <div class="value-card ornate-card ornate-corners reveal">
+          <span class="corner-bl"></span><span class="corner-br"></span>
+          <div class="value-icon embossed">
+            <!-- Heart icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </div>
+          <h3>Handcrafted</h3>
+          <p>Every piece is made by hand with love and attention to detail</p>
+        </div>
+
+        <div class="value-card ornate-card ornate-corners reveal reveal-delay-1">
+          <span class="corner-bl"></span><span class="corner-br"></span>
+          <div class="value-icon embossed">
+            <!-- Sparkles icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+              <path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/>
+            </svg>
+          </div>
+          <h3>Premium Quality</h3>
+          <p>We use only the finest soy wax and phthalate-free fragrance oils</p>
+        </div>
+
+        <div class="value-card ornate-card ornate-corners reveal reveal-delay-2">
+          <span class="corner-bl"></span><span class="corner-br"></span>
+          <div class="value-icon embossed">
+            <!-- Moon icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+            </svg>
+          </div>
+          <h3>Gothic Aesthetic</h3>
+          <p>Each scent is inspired by the beauty of darkness and mystery</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Lace edge: bottom of About -->
+  <div class="lace-edge lace-edge--flip" aria-hidden="true">
+    <svg viewBox="0 0 1200 40" preserveAspectRatio="none" fill="none">
+      <defs>
+        <pattern id="lace-scallop2" x="0" y="0" width="60" height="40" patternUnits="userSpaceOnUse">
+          <path d="M0 20 Q15 5, 30 20 Q45 35, 60 20" stroke="currentColor" stroke-width="1.2" fill="none" opacity="0.5"/>
+          <circle cx="30" cy="20" r="2" fill="currentColor" opacity="0.3"/>
+          <circle cx="15" cy="12" r="1.2" fill="currentColor" opacity="0.2"/>
+          <circle cx="45" cy="12" r="1.2" fill="currentColor" opacity="0.2"/>
+        </pattern>
+      </defs>
+      <rect width="1200" height="40" fill="url(#lace-scallop2)"/>
+    </svg>
+  </div>
+
+  <!-- Scrollwork divider: About → Scents -->
+  <div class="scrollwork-divider" aria-hidden="true">
+    <svg viewBox="0 0 1200 80" fill="none" preserveAspectRatio="xMidYMid meet">
+      <path d="M600 40 Q580 20, 560 40 Q580 60, 600 40 Q620 20, 640 40 Q620 60, 600 40" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.8"/>
+      <circle cx="600" cy="40" r="3" fill="currentColor" opacity="0.7"/>
+      <path d="M555 40 Q545 30, 535 40 Q545 50, 555 40" stroke="currentColor" stroke-width="1.2" fill="none" opacity="0.6"/>
+      <path d="M645 40 Q655 30, 665 40 Q655 50, 645 40" stroke="currentColor" stroke-width="1.2" fill="none" opacity="0.6"/>
+      <path d="M535 40 Q510 35, 485 40 Q460 45, 435 40 Q410 35, 385 40 Q360 45, 335 40 Q310 35, 285 40 Q260 45, 235 40 Q210 35, 185 40 Q160 45, 135 40 Q110 35, 85 40 Q60 45, 35 40 Q15 38, 0 40" stroke="currentColor" stroke-width="1" fill="none" opacity="0.5"/>
+      <path d="M665 40 Q690 35, 715 40 Q740 45, 765 40 Q790 35, 815 40 Q840 45, 865 40 Q890 35, 915 40 Q940 45, 965 40 Q990 35, 1015 40 Q1040 45, 1065 40 Q1090 35, 1115 40 Q1140 45, 1165 40 Q1185 38, 1200 40" stroke="currentColor" stroke-width="1" fill="none" opacity="0.5"/>
+      <circle cx="485" cy="40" r="2" fill="currentColor" opacity="0.4"/>
+      <circle cx="385" cy="40" r="1.5" fill="currentColor" opacity="0.35"/>
+      <circle cx="715" cy="40" r="2" fill="currentColor" opacity="0.4"/>
+      <circle cx="815" cy="40" r="1.5" fill="currentColor" opacity="0.35"/>
+    </svg>
+  </div>
+
+  <!-- Lace edge: top of Scents -->
+  <div class="lace-edge" aria-hidden="true">
+    <svg viewBox="0 0 1200 40" preserveAspectRatio="none" fill="none">
+      <defs>
+        <pattern id="lace-scallop3" x="0" y="0" width="60" height="40" patternUnits="userSpaceOnUse">
+          <path d="M0 20 Q15 5, 30 20 Q45 35, 60 20" stroke="currentColor" stroke-width="1.2" fill="none" opacity="0.5"/>
+          <circle cx="30" cy="20" r="2" fill="currentColor" opacity="0.3"/>
+          <circle cx="15" cy="12" r="1.2" fill="currentColor" opacity="0.2"/>
+          <circle cx="45" cy="12" r="1.2" fill="currentColor" opacity="0.2"/>
+        </pattern>
+      </defs>
+      <rect width="1200" height="40" fill="url(#lace-scallop3)"/>
+    </svg>
+  </div>
+
+  <!-- ========== SCENTS (Product Teaser) ========== -->
+  <section class="section products" id="scents">
+    <div class="leather-texture" aria-hidden="true"></div>
+    <div class="section-inner">
+
+      <div class="section-header reveal">
+        <svg class="filigree" viewBox="0 0 400 100" fill="none" aria-hidden="true">
+          <defs><linearGradient id="fg5" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="currentColor" stop-opacity="0"/><stop offset="50%" stop-color="currentColor" stop-opacity="1"/><stop offset="100%" stop-color="currentColor" stop-opacity="0"/></linearGradient></defs>
+          <path d="M 200 50 Q 180 30, 160 50 Q 180 70, 200 50 Q 220 30, 240 50 Q 220 70, 200 50" stroke="url(#fg5)" stroke-width="1.5" fill="none"/>
+          <path d="M 160 50 Q 140 45, 120 50 Q 100 55, 80 50 Q 60 45, 40 50 Q 20 55, 0 50" stroke="url(#fg5)" stroke-width="1.2" fill="none"/>
+          <path d="M 240 50 Q 260 45, 280 50 Q 300 55, 320 50 Q 340 45, 360 50 Q 380 55, 400 50" stroke="url(#fg5)" stroke-width="1.2" fill="none"/>
+          <circle cx="200" cy="50" r="4" fill="currentColor" opacity="0.8"/><circle cx="160" cy="50" r="3" fill="currentColor" opacity="0.6"/><circle cx="240" cy="50" r="3" fill="currentColor" opacity="0.6"/>
+        </svg>
+        <h2 class="section-title debossed-text tracking-luxury">
+          Our <span class="accent text-glow-red">Collection</span>
+        </h2>
+        <p class="section-subtitle">Gothic-inspired fragrances that captivate and enchant</p>
+      </div>
+
+      <div class="products-grid">
+        <!-- Midnight Rose -->
+        <div class="product-card ornate-card ornate-corners reveal">
+          <span class="corner-bl"></span><span class="corner-br"></span>
+          <div class="product-image">
+            <img
+              src="https://images.unsplash.com/photo-1767858698621-6e901c7c5afb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZWQlMjByb3NlcyUyMGRhcmslMjBnb3RoaWN8ZW58MXx8fHwxNzc0NzIzMzMwfDA&ixlib=rb-4.1.0&q=80&w=1080"
+              alt="Midnight Rose wax melt"
+              loading="lazy"
+            />
+            <div class="product-image-overlay"></div>
+          </div>
+          <div class="product-info">
+            <div class="about-accent-line"></div>
+            <h3>Midnight Rose</h3>
+            <p>Dark rose petals with hints of blackberry and vanilla</p>
+          </div>
+        </div>
+
+        <!-- Velvet Dreams -->
+        <div class="product-card ornate-card ornate-corners reveal reveal-delay-1">
+          <span class="corner-bl"></span><span class="corner-br"></span>
+          <div class="product-image">
+            <img
+              src="https://images.unsplash.com/photo-1762190674294-58e4a7a40a35?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXglMjBtZWx0cyUyMGNhbmRsZXMlMjBkYXJrfGVufDF8fHx8MTc3NDcyMzMyOXww&ixlib=rb-4.1.0&q=80&w=1080"
+              alt="Velvet Dreams wax melt"
+              loading="lazy"
+            />
+            <div class="product-image-overlay"></div>
+          </div>
+          <div class="product-info">
+            <div class="about-accent-line"></div>
+            <h3>Velvet Dreams</h3>
+            <p>Rich velvet with notes of amber and dark chocolate</p>
+          </div>
+        </div>
+
+        <!-- Gothic Garden -->
+        <div class="product-card ornate-card ornate-corners reveal reveal-delay-2">
+          <span class="corner-bl"></span><span class="corner-br"></span>
+          <div class="product-image">
+            <img
+              src="https://images.unsplash.com/photo-1629606046986-2203dc763b59?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxnb3RoaWMlMjBjYW5kbGVzJTIwZGFya3xlbnwxfHx8fDE3NzQ3MjMzMzB8MA&ixlib=rb-4.1.0&q=80&w=1080"
+              alt="Gothic Garden wax melt"
+              loading="lazy"
+            />
+            <div class="product-image-overlay"></div>
+          </div>
+          <div class="product-info">
+            <div class="about-accent-line"></div>
+            <h3>Gothic Garden</h3>
+            <p>Dark florals with jasmine, lily, and sandalwood</p>
+          </div>
+        </div>
+
+        <!-- Crimson Moon -->
+        <div class="product-card ornate-card ornate-corners reveal reveal-delay-3">
+          <span class="corner-bl"></span><span class="corner-br"></span>
+          <div class="product-image">
+            <img
+              src="https://images.unsplash.com/photo-1585641689080-2e530457803b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzY2VudGVkJTIwd2F4JTIwY2FuZGxlJTIwYnVybmluZ3xlbnwxfHx8fDE3NzQ3MjMzMjl8MA&ixlib=rb-4.1.0&q=80&w=1080"
+              alt="Crimson Moon wax melt"
+              loading="lazy"
+            />
+            <div class="product-image-overlay"></div>
+          </div>
+          <div class="product-info">
+            <div class="about-accent-line"></div>
+            <h3>Crimson Moon</h3>
+            <p>Blood orange, cinnamon, and clove with a smoky finish</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="products-cta reveal">
+        <a href="#contact" class="btn-neumorphic">Get in Touch for Orders</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Lace edge: bottom of Scents -->
+  <div class="lace-edge lace-edge--flip" aria-hidden="true">
+    <svg viewBox="0 0 1200 40" preserveAspectRatio="none" fill="none">
+      <defs>
+        <pattern id="lace-scallop4" x="0" y="0" width="60" height="40" patternUnits="userSpaceOnUse">
+          <path d="M0 20 Q15 5, 30 20 Q45 35, 60 20" stroke="currentColor" stroke-width="1.2" fill="none" opacity="0.5"/>
+          <circle cx="30" cy="20" r="2" fill="currentColor" opacity="0.3"/>
+          <circle cx="15" cy="12" r="1.2" fill="currentColor" opacity="0.2"/>
+          <circle cx="45" cy="12" r="1.2" fill="currentColor" opacity="0.2"/>
+        </pattern>
+      </defs>
+      <rect width="1200" height="40" fill="url(#lace-scallop4)"/>
+    </svg>
+  </div>
+
+  <!-- Scrollwork divider: Scents → Contact -->
+  <div class="scrollwork-divider" aria-hidden="true">
+    <svg viewBox="0 0 1200 80" fill="none" preserveAspectRatio="xMidYMid meet">
+      <path d="M600 40 Q580 20, 560 40 Q580 60, 600 40 Q620 20, 640 40 Q620 60, 600 40" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.8"/>
+      <circle cx="600" cy="40" r="3" fill="currentColor" opacity="0.7"/>
+      <path d="M555 40 Q545 30, 535 40 Q545 50, 555 40" stroke="currentColor" stroke-width="1.2" fill="none" opacity="0.6"/>
+      <path d="M645 40 Q655 30, 665 40 Q655 50, 645 40" stroke="currentColor" stroke-width="1.2" fill="none" opacity="0.6"/>
+      <path d="M535 40 Q510 35, 485 40 Q460 45, 435 40 Q410 35, 385 40 Q360 45, 335 40 Q310 35, 285 40 Q260 45, 235 40 Q210 35, 185 40 Q160 45, 135 40 Q110 35, 85 40 Q60 45, 35 40 Q15 38, 0 40" stroke="currentColor" stroke-width="1" fill="none" opacity="0.5"/>
+      <path d="M665 40 Q690 35, 715 40 Q740 45, 765 40 Q790 35, 815 40 Q840 45, 865 40 Q890 35, 915 40 Q940 45, 965 40 Q990 35, 1015 40 Q1040 45, 1065 40 Q1090 35, 1115 40 Q1140 45, 1165 40 Q1185 38, 1200 40" stroke="currentColor" stroke-width="1" fill="none" opacity="0.5"/>
+      <circle cx="485" cy="40" r="2" fill="currentColor" opacity="0.4"/>
+      <circle cx="385" cy="40" r="1.5" fill="currentColor" opacity="0.35"/>
+      <circle cx="715" cy="40" r="2" fill="currentColor" opacity="0.4"/>
+      <circle cx="815" cy="40" r="1.5" fill="currentColor" opacity="0.35"/>
+    </svg>
+  </div>
+
+  <!-- Lace edge: top of Contact -->
+  <div class="lace-edge" aria-hidden="true">
+    <svg viewBox="0 0 1200 40" preserveAspectRatio="none" fill="none">
+      <defs>
+        <pattern id="lace-scallop5" x="0" y="0" width="60" height="40" patternUnits="userSpaceOnUse">
+          <path d="M0 20 Q15 5, 30 20 Q45 35, 60 20" stroke="currentColor" stroke-width="1.2" fill="none" opacity="0.5"/>
+          <circle cx="30" cy="20" r="2" fill="currentColor" opacity="0.3"/>
+          <circle cx="15" cy="12" r="1.2" fill="currentColor" opacity="0.2"/>
+          <circle cx="45" cy="12" r="1.2" fill="currentColor" opacity="0.2"/>
+        </pattern>
+      </defs>
+      <rect width="1200" height="40" fill="url(#lace-scallop5)"/>
+    </svg>
+  </div>
+
+  <!-- ========== CONTACT ========== -->
+  <section class="section contact" id="contact">
+    <div class="leather-texture" aria-hidden="true"></div>
+    <div class="section-inner">
+
+      <div class="section-header reveal">
+        <svg class="filigree" viewBox="0 0 400 100" fill="none" aria-hidden="true">
+          <defs><linearGradient id="fg6" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="currentColor" stop-opacity="0"/><stop offset="50%" stop-color="currentColor" stop-opacity="1"/><stop offset="100%" stop-color="currentColor" stop-opacity="0"/></linearGradient></defs>
+          <path d="M 200 50 Q 180 30, 160 50 Q 180 70, 200 50 Q 220 30, 240 50 Q 220 70, 200 50" stroke="url(#fg6)" stroke-width="1.5" fill="none"/>
+          <path d="M 160 50 Q 140 45, 120 50 Q 100 55, 80 50 Q 60 45, 40 50 Q 20 55, 0 50" stroke="url(#fg6)" stroke-width="1.2" fill="none"/>
+          <path d="M 240 50 Q 260 45, 280 50 Q 300 55, 320 50 Q 340 45, 360 50 Q 380 55, 400 50" stroke="url(#fg6)" stroke-width="1.2" fill="none"/>
+          <circle cx="200" cy="50" r="4" fill="currentColor" opacity="0.8"/><circle cx="160" cy="50" r="3" fill="currentColor" opacity="0.6"/><circle cx="240" cy="50" r="3" fill="currentColor" opacity="0.6"/>
+        </svg>
+        <h2 class="section-title debossed-text tracking-luxury">
+          Get in <span class="accent text-glow-red">Touch</span>
+        </h2>
+        <p class="section-subtitle">We'd love to hear from you</p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Form -->
+        <div class="contact-form-card ornate-card ornate-corners reveal">
+          <span class="corner-bl"></span><span class="corner-br"></span>
+          <div style="position:relative;z-index:1;">
+            <div class="about-accent-line" style="margin-bottom:0.75rem"></div>
+            <h3 class="contact-form-title">Send a <span class="accent">Message</span></h3>
+
+            <form id="contact-form">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required placeholder="Your name" class="input-neumorphic" autocomplete="name" />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required placeholder="your.email@example.com" class="input-neumorphic" autocomplete="email" />
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required placeholder="Tell us what's on your mind..." class="input-neumorphic"></textarea>
+              </div>
+              <button type="submit" class="form-submit btn-neumorphic">
+                <!-- Send icon -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                </svg>
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Info -->
+        <div class="contact-info-card ornate-card ornate-corners reveal reveal-delay-1">
+          <span class="corner-bl"></span><span class="corner-br"></span>
+          <div style="position:relative;z-index:1;">
+            <div class="about-accent-line" style="margin-bottom:0.75rem"></div>
+            <h3 class="contact-info-title">Contact <span class="accent">Information</span></h3>
+
+            <div class="contact-info-item">
+              <div class="contact-info-icon embossed">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                </svg>
+              </div>
+              <div class="contact-info-text">
+                <h4>Email</h4>
+                <p>hello@wickedlydelightful.com</p>
+              </div>
+            </div>
+
+            <div class="contact-info-item">
+              <div class="contact-info-icon embossed">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+              </div>
+              <div class="contact-info-text">
+                <h4>Phone</h4>
+                <p>(555) 123-4567</p>
+              </div>
+            </div>
+
+            <div class="contact-info-item">
+              <div class="contact-info-icon embossed">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <div class="contact-info-text">
+                <h4>Location</h4>
+                <p>Handcrafted with love, shipped everywhere</p>
+              </div>
+            </div>
+
+            <div class="business-hours">
+              <h4>Business Hours</h4>
+              <div class="hours-item">
+                <span class="day">Monday – Friday</span>
+                <span class="time">9:00 AM – 6:00 PM</span>
+              </div>
+              <div class="hours-item">
+                <span class="day">Saturday</span>
+                <span class="time">10:00 AM – 4:00 PM</span>
+              </div>
+              <div class="hours-item">
+                <span class="day">Sunday</span>
+                <span class="time">Closed</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Lace edge: bottom of Contact / above footer -->
+  <div class="lace-edge lace-edge--flip" aria-hidden="true">
+    <svg viewBox="0 0 1200 40" preserveAspectRatio="none" fill="none">
+      <defs>
+        <pattern id="lace-scallop6" x="0" y="0" width="60" height="40" patternUnits="userSpaceOnUse">
+          <path d="M0 20 Q15 5, 30 20 Q45 35, 60 20" stroke="currentColor" stroke-width="1.2" fill="none" opacity="0.5"/>
+          <circle cx="30" cy="20" r="2" fill="currentColor" opacity="0.3"/>
+          <circle cx="15" cy="12" r="1.2" fill="currentColor" opacity="0.2"/>
+          <circle cx="45" cy="12" r="1.2" fill="currentColor" opacity="0.2"/>
+        </pattern>
+      </defs>
+      <rect width="1200" height="40" fill="url(#lace-scallop6)"/>
+    </svg>
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer" id="footer">
+    <div class="gradient-line"></div>
+    <div class="footer-inner">
+
+      <!-- Filigree -->
+      <div style="margin-bottom:2rem;">
+        <svg class="filigree filigree--sm" viewBox="0 0 400 100" fill="none" aria-hidden="true">
+          <defs><linearGradient id="fg7" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="currentColor" stop-opacity="0"/><stop offset="50%" stop-color="currentColor" stop-opacity="1"/><stop offset="100%" stop-color="currentColor" stop-opacity="0"/></linearGradient></defs>
+          <path d="M 200 50 Q 180 30, 160 50 Q 180 70, 200 50 Q 220 30, 240 50 Q 220 70, 200 50" stroke="url(#fg7)" stroke-width="1.5" fill="none"/>
+          <path d="M 160 50 Q 140 45, 120 50 Q 100 55, 80 50 Q 60 45, 40 50 Q 20 55, 0 50" stroke="url(#fg7)" stroke-width="1.2" fill="none"/>
+          <path d="M 240 50 Q 260 45, 280 50 Q 300 55, 320 50 Q 340 45, 360 50 Q 380 55, 400 50" stroke="url(#fg7)" stroke-width="1.2" fill="none"/>
+          <circle cx="200" cy="50" r="4" fill="currentColor" opacity="0.8"/><circle cx="160" cy="50" r="3" fill="currentColor" opacity="0.6"/><circle cx="240" cy="50" r="3" fill="currentColor" opacity="0.6"/>
+        </svg>
+      </div>
+
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3 class="text-glow-red font-serif">Wickedly Delightful</h3>
+          <p>Handcrafted wax melts with a gothic elegance. Each scent is carefully curated to create an atmosphere of mystery and luxury.</p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <a href="#about" class="hover-glow">About Us</a>
+          <a href="#scents" class="hover-glow">Our Scents</a>
+          <a href="#contact" class="hover-glow">Contact</a>
+        </div>
+
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="#" class="social-icon hover-glow embossed" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </a>
+            <a href="#" class="social-icon hover-glow embossed" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-icon hover-glow embossed" aria-label="Email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="gradient-line-subtle"></div>
+      <div class="footer-bottom">
+        <p>
+          Made with
+          <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+          by Wickedly Delightful Scents &copy; 2026
+        </p>
+      </div>
+
+    </div>
+    <div class="gradient-line" style="margin-top:1.5rem"></div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
