@@ -236,12 +236,17 @@ ul {
 
 /* --- Animations --- */
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(155, 17, 30, 0.4); }
-  50% { box-shadow: 0 0 30px rgba(155, 17, 30, 0.7); }
+  0%, 100% { filter: drop-shadow(0 0 12px rgba(155, 17, 30, 0.5)) drop-shadow(0 0 40px rgba(155, 17, 30, 0.2)); }
+  50% { filter: drop-shadow(0 0 20px rgba(155, 17, 30, 0.8)) drop-shadow(0 0 60px rgba(155, 17, 30, 0.35)); }
 }
 
 .pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
+  animation: pulse-glow 2.5s ease-in-out infinite;
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.pulse-glow.mouse-near {
+  animation: none;
 }
 
 @keyframes draw {

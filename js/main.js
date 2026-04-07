@@ -128,6 +128,46 @@
     });
   }
 
+  // ---- Interactive Mouse Glow on Logo ----
+  const heroLogo = document.querySelector('.hero-logo.pulse-glow');
+
+  if (heroLogo) {
+    const glowRadius = 350; // pixels — distance at which glow starts reacting
+
+    document.addEventListener('mousemove', function (e) {
+      const rect = heroLogo.getBoundingClientRect();
+      const logoCX = rect.left + rect.width / 2;
+      const logoCY = rect.top + rect.height / 2;
+      const dx = e.clientX - logoCX;
+      const dy = e.clientY - logoCY;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist < glowRadius) {
+        const intensity = 1 - (dist / glowRadius); // 1 at center, 0 at edge
+        const glow1 = Math.round(15 + intensity * 30);
+        const glow2 = Math.round(40 + intensity * 50);
+        const opacity1 = (0.5 + intensity * 0.5).toFixed(2);
+        const opacity2 = (0.2 + intensity * 0.4).toFixed(2);
+        const scale = 1 + intensity * 0.06;
+
+        heroLogo.classList.add('mouse-near');
+        heroLogo.style.filter = 'drop-shadow(0 0 ' + glow1 + 'px rgba(155,17,30,' + opacity1 + ')) drop-shadow(0 0 ' + glow2 + 'px rgba(155,17,30,' + opacity2 + '))';
+        heroLogo.style.transform = 'scale(' + scale + ')';
+      } else {
+        heroLogo.classList.remove('mouse-near');
+        heroLogo.style.filter = '';
+        heroLogo.style.transform = '';
+      }
+    });
+
+    // Reset on mouse leave window
+    document.addEventListener('mouseleave', function () {
+      heroLogo.classList.remove('mouse-near');
+      heroLogo.style.filter = '';
+      heroLogo.style.transform = '';
+    });
+  }
+
   // ---- Smooth scroll offset for fixed nav ----
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", (e) => {
