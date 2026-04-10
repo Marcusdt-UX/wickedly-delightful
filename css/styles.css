@@ -872,7 +872,7 @@ ul {
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin-bottom: 3rem;
 }
@@ -884,7 +884,7 @@ ul {
 .product-image {
   position: relative;
   overflow: hidden;
-  height: 16rem;
+  height: 22rem;
 }
 
 .product-image img {
@@ -1244,6 +1244,10 @@ ul {
 @media (max-width: 1024px) {
   .products-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .product-image {
+    height: 20rem;
   }
 }
 
