@@ -14,11 +14,13 @@ if (!SQUARE_ACCESS_TOKEN) {
     exit;
 }
 
-// Check cache first
-$cached = square_cache_get('catalog_products');
-if ($cached) {
-    echo json_encode($cached);
-    exit;
+// Check cache first (skip with ?nocache)
+if (!isset($_GET['nocache'])) {
+    $cached = square_cache_get('catalog_products');
+    if ($cached) {
+        echo json_encode($cached);
+        exit;
+    }
 }
 
 // 1. Fetch catalog items
