@@ -6,11 +6,11 @@
  */
 
 // Square OAuth Application credentials
-define('SQUARE_APP_ID', '');        // Application ID (sq0idp-...)
-define('SQUARE_APP_SECRET', '');    // Application Secret (sq0csp-...)
+define('SQUARE_APP_ID', 'sandbox-sq0idb-mfiZ3JYyCV3SGazT9nwyBA');
+define('SQUARE_APP_SECRET', 'sandbox-sq0csb-N9AxezO0HrQCKH0vT6ggSSj9ucDYlxnRLKyrJPGz5cE');    // Application Secret
 
 // Square environment: 'production' or 'sandbox'
-define('SQUARE_ENV', 'production');
+define('SQUARE_ENV', 'sandbox');
 
 // OAuth URLs
 define('SQUARE_OAUTH_BASE', SQUARE_ENV === 'production'
