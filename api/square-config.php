@@ -7,7 +7,7 @@
  */
 
 // Square environment: 'sandbox' or 'production'
-define('SQUARE_ENVIRONMENT', 'production');
+define('SQUARE_ENVIRONMENT', 'sandbox');
 
 // Token file written by admin OAuth flow
 define('SQUARE_TOKEN_FILE_PATH', __DIR__ . '/../.data/square-token.json');
