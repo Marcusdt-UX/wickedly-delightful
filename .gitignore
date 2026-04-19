@@ -5,6 +5,12 @@ node_modules/
 .DS_Store
 Thumbs.db
 
+# Cache
+.cache/
+
+# OAuth token data (sensitive)
+.data/
+
 # Editor
 .vscode/
 *.swp
