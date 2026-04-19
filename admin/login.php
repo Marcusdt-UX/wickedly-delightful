@@ -14,8 +14,13 @@ if (!empty($_SESSION['square_merchant_id']) && !empty($_SESSION['logged_in_at'])
 $state = bin2hex(random_bytes(20));
 $_SESSION['oauth_state'] = $state;
 
+// Sandbox CSRF token
+$sandboxCsrf = bin2hex(random_bytes(20));
+$_SESSION['sandbox_csrf'] = $sandboxCsrf;
+
 $expired = isset($_GET['expired']);
 $authUrl = square_authorize_url($state);
+$isSandbox = SQUARE_ENV === 'sandbox';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -199,13 +204,24 @@ $authUrl = square_authorize_url($state);
 
       <div class="login-divider">AUTHENTICATE</div>
 
+      <?php if ($isSandbox): ?>
+      <form method="POST" action="/admin/sandbox-login.php">
+        <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($sandboxCsrf); ?>" />
+        <button type="submit" class="square-btn btn-neumorphic">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18.75 1.5H5.25A3.75 3.75 0 0 0 1.5 5.25v13.5A3.75 3.75 0 0 0 5.25 22.5h13.5a3.75 3.75 0 0 0 3.75-3.75V5.25A3.75 3.75 0 0 0 18.75 1.5zm-2.4 13.35a1.5 1.5 0 0 1-1.5 1.5H9.15a1.5 1.5 0 0 1-1.5-1.5V9.15a1.5 1.5 0 0 1 1.5-1.5h5.7a1.5 1.5 0 0 1 1.5 1.5v5.7z"/>
+          </svg>
+          Sign in with Square (Sandbox)
+        </button>
+      </form>
+      <?php else: ?>
       <a href="<?php echo htmlspecialchars($authUrl); ?>" class="square-btn btn-neumorphic" <?php echo (!SQUARE_APP_ID || !SQUARE_APP_SECRET) ? 'style="opacity:0.4;pointer-events:none;"' : ''; ?>>
-        <!-- Square logo -->
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path d="M18.75 1.5H5.25A3.75 3.75 0 0 0 1.5 5.25v13.5A3.75 3.75 0 0 0 5.25 22.5h13.5a3.75 3.75 0 0 0 3.75-3.75V5.25A3.75 3.75 0 0 0 18.75 1.5zm-2.4 13.35a1.5 1.5 0 0 1-1.5 1.5H9.15a1.5 1.5 0 0 1-1.5-1.5V9.15a1.5 1.5 0 0 1 1.5-1.5h5.7a1.5 1.5 0 0 1 1.5 1.5v5.7z"/>
         </svg>
         Sign in with Square
       </a>
+      <?php endif; ?>
 
       <div class="login-footer">
         <a href="/">&larr; Back to site</a>
