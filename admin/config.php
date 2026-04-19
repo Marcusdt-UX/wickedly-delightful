@@ -59,17 +59,11 @@ function save_square_token(array $data): void {
  * Build the Square OAuth authorize URL.
  */
 function square_authorize_url(string $state): string {
-    $protocol = (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')
-        ? 'https' : ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http');
-    $host = $_SERVER['HTTP_HOST'] ?? '';
-    $redirectUri = $protocol . '://' . $host . '/admin/callback.php';
-
     return SQUARE_OAUTH_BASE . '/oauth2/authorize'
         . '?client_id=' . SQUARE_APP_ID
         . '&scope=' . SQUARE_OAUTH_SCOPES
-        . '&session=' . 'false'
-        . '&state=' . urlencode($state)
-        . '&redirect_uri=' . urlencode($redirectUri);
+        . '&session=false'
+        . '&state=' . urlencode($state);
 }
 
 /**
