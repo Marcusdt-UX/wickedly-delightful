@@ -242,6 +242,8 @@ $prodNeedsCredentials = SQUARE_ENV === 'production' && strpos(SQUARE_APP_ID, 'sa
 
       <div class="login-footer">
         <a href="/">&larr; Back to site</a>
+        <span style="color:var(--muted);margin:0 0.45rem;">•</span>
+        <a href="/admin/recover-access.php">Recover access</a>
       </div>
     </div>
   </div>

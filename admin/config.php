@@ -35,6 +35,9 @@ define('SQUARE_TOKEN_FILE', __DIR__ . '/../.data/square-token.json');
 // Merchant lock file: once set, only this Square merchant can re-authorize admin.
 define('SQUARE_MERCHANT_LOCK_FILE', __DIR__ . '/../.data/square-merchant-lock.json');
 
+// Recovery key file: allows owner to reset connection without developer intervention.
+define('SQUARE_RECOVERY_FILE', __DIR__ . '/../.data/square-recovery.json');
+
 // Session lifetime (8 hours)
 define('SESSION_LIFETIME', 8 * 3600);
 
@@ -91,6 +94,53 @@ function set_locked_merchant_id(string $merchantId): void {
     ];
 
     file_put_contents(SQUARE_MERCHANT_LOCK_FILE, json_encode($payload, JSON_PRETTY_PRINT));
+}
+
+/**
+ * Check whether a recovery key exists.
+ */
+function has_recovery_key(): bool {
+    if (!file_exists(SQUARE_RECOVERY_FILE)) return false;
+    $data = json_decode(file_get_contents(SQUARE_RECOVERY_FILE), true);
+    return !empty($data['hash']);
+}
+
+/**
+ * Generate and persist a new owner recovery key.
+ * Returns the plaintext key once; caller must show it immediately.
+ */
+function generate_recovery_key(): string {
+    $key = strtoupper(bin2hex(random_bytes(8)) . '-' . bin2hex(random_bytes(8)));
+    $hash = password_hash($key, PASSWORD_DEFAULT);
+
+    $dir = dirname(SQUARE_RECOVERY_FILE);
+    if (!is_dir($dir)) {
+        mkdir($dir, 0755, true);
+    }
+
+    $existing = file_exists(SQUARE_RECOVERY_FILE)
+        ? (json_decode(file_get_contents(SQUARE_RECOVERY_FILE), true) ?: [])
+        : [];
+
+    $payload = [
+        'hash' => $hash,
+        'created_at' => $existing['created_at'] ?? date('c'),
+        'updated_at' => date('c'),
+    ];
+
+    file_put_contents(SQUARE_RECOVERY_FILE, json_encode($payload, JSON_PRETTY_PRINT));
+    return $key;
+}
+
+/**
+ * Verify recovery key.
+ */
+function verify_recovery_key(string $key): bool {
+    if (!file_exists(SQUARE_RECOVERY_FILE)) return false;
+    $data = json_decode(file_get_contents(SQUARE_RECOVERY_FILE), true);
+    $hash = $data['hash'] ?? '';
+    if (!$hash) return false;
+    return password_verify(trim($key), $hash);
 }
 
 /**

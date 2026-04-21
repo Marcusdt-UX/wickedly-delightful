@@ -73,6 +73,11 @@ if (!$lockedMerchantId) {
     set_locked_merchant_id($oauthMerchantId);
 }
 
+// Create owner recovery key on first successful setup.
+if (!has_recovery_key()) {
+    $_SESSION['new_recovery_key'] = generate_recovery_key();
+}
+
 // Fetch merchant info for the session
 $merchantName = 'Admin';
 $locationId = '';

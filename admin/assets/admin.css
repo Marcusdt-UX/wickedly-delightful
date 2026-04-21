@@ -189,6 +189,34 @@
   line-height: 1.35;
 }
 
+.admin-recovery-box {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 0.35rem;
+  border: 1px solid rgba(46, 204, 113, 0.35);
+  background: rgba(46, 204, 113, 0.08);
+}
+
+.admin-recovery-title {
+  font-size: 0.78rem;
+  color: #2ecc71;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.45rem;
+}
+
+.admin-recovery-key {
+  display: block;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  word-break: break-word;
+  color: var(--foreground);
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.3rem;
+  padding: 0.5rem 0.6rem;
+}
+
 /* --- Responsive --- */
 @media (max-width: 768px) {
   .admin-grid {

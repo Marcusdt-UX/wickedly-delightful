@@ -9,6 +9,8 @@ if (empty($_SESSION['admin_reset_csrf'])) {
   $_SESSION['admin_reset_csrf'] = bin2hex(random_bytes(20));
 }
 $adminResetCsrf = $_SESSION['admin_reset_csrf'];
+$newRecoveryKey = $_SESSION['new_recovery_key'] ?? '';
+unset($_SESSION['new_recovery_key']);
 
 // Get token info
 $tokenData = get_square_token();
@@ -219,6 +221,23 @@ if ($hasToken) {
                 Reset Square Connection
               </button>
             </form>
+
+            <form method="POST" action="/admin/regenerate-recovery-key.php" onsubmit="return confirm('Generate a new recovery key? The old key will stop working.');">
+              <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($adminResetCsrf); ?>" />
+              <button type="submit" class="admin-action btn-neumorphic">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 1v22"/><path d="M1 12h22"/></svg>
+                Regenerate Recovery Key
+              </button>
+            </form>
+
+            <?php if ($newRecoveryKey): ?>
+            <div class="admin-recovery-box">
+              <div class="admin-recovery-title">Owner Recovery Key (save now)</div>
+              <code class="admin-recovery-key"><?php echo htmlspecialchars($newRecoveryKey); ?></code>
+              <p class="admin-help">This key is shown once. Store it in your password manager.</p>
+            </div>
+            <?php endif; ?>
+
             <p class="admin-help">Use only when intentionally switching to a different Square account.</p>
           </div>
         </div>
