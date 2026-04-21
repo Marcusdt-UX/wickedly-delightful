@@ -19,6 +19,7 @@ $sandboxCsrf = bin2hex(random_bytes(20));
 $_SESSION['sandbox_csrf'] = $sandboxCsrf;
 
 $expired = isset($_GET['expired']);
+$unauthorized = isset($_GET['unauthorized']);
 $authUrl = square_authorize_url($state);
 $isSandbox = SQUARE_ENV === 'sandbox';
 $prodNeedsCredentials = SQUARE_ENV === 'production' && strpos(SQUARE_APP_ID, 'sandbox-') === 0;
@@ -207,6 +208,10 @@ $prodNeedsCredentials = SQUARE_ENV === 'production' && strpos(SQUARE_APP_ID, 'sa
 
       <?php if ($expired): ?>
       <div class="login-notice">Your session has expired. Please sign in again.</div>
+      <?php endif; ?>
+
+      <?php if ($unauthorized): ?>
+      <div class="login-notice">This admin is locked to a different Square account. Please use the authorized client Square login.</div>
       <?php endif; ?>
 
       <div class="login-divider">AUTHENTICATE</div>

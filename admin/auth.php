@@ -13,6 +13,14 @@ if (empty($_SESSION['square_merchant_id']) || empty($_SESSION['logged_in_at'])) 
     exit;
 }
 
+$sessionMerchantId = (string)$_SESSION['square_merchant_id'];
+$lockedMerchantId = get_locked_merchant_id();
+if ($lockedMerchantId && $sessionMerchantId !== $lockedMerchantId) {
+    session_destroy();
+    header('Location: /admin/login.php?unauthorized=1');
+    exit;
+}
+
 // Check session lifetime
 if ((time() - $_SESSION['logged_in_at']) > SESSION_LIFETIME) {
     session_destroy();
@@ -21,6 +29,6 @@ if ((time() - $_SESSION['logged_in_at']) > SESSION_LIFETIME) {
 }
 
 // Make merchant info available
-$merchantId   = $_SESSION['square_merchant_id'];
+$merchantId   = $sessionMerchantId;
 $merchantName = $_SESSION['square_merchant_name'] ?? 'Admin';
 $locationId   = $_SESSION['square_location_id'] ?? '';

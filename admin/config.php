@@ -32,6 +32,9 @@ define('SQUARE_OAUTH_SCOPES', implode('+', [
 // File where the OAuth tokens are stored (outside web root ideally, but this works on shared hosting)
 define('SQUARE_TOKEN_FILE', __DIR__ . '/../.data/square-token.json');
 
+// Merchant lock file: once set, only this Square merchant can re-authorize admin.
+define('SQUARE_MERCHANT_LOCK_FILE', __DIR__ . '/../.data/square-merchant-lock.json');
+
 // Session lifetime (8 hours)
 define('SESSION_LIFETIME', 8 * 3600);
 
@@ -53,6 +56,41 @@ function save_square_token(array $data): void {
         mkdir($dir, 0755, true);
     }
     file_put_contents(SQUARE_TOKEN_FILE, json_encode($data, JSON_PRETTY_PRINT));
+}
+
+/**
+ * Get locked merchant ID, if any.
+ */
+function get_locked_merchant_id(): ?string {
+    if (!file_exists(SQUARE_MERCHANT_LOCK_FILE)) return null;
+    $data = json_decode(file_get_contents(SQUARE_MERCHANT_LOCK_FILE), true);
+    $id = trim((string)($data['merchant_id'] ?? ''));
+    return $id !== '' ? $id : null;
+}
+
+/**
+ * Persist merchant lock.
+ */
+function set_locked_merchant_id(string $merchantId): void {
+    $merchantId = trim($merchantId);
+    if ($merchantId === '') return;
+
+    $dir = dirname(SQUARE_MERCHANT_LOCK_FILE);
+    if (!is_dir($dir)) {
+        mkdir($dir, 0755, true);
+    }
+
+    $current = file_exists(SQUARE_MERCHANT_LOCK_FILE)
+        ? (json_decode(file_get_contents(SQUARE_MERCHANT_LOCK_FILE), true) ?: [])
+        : [];
+
+    $payload = [
+        'merchant_id' => $merchantId,
+        'locked_at' => $current['locked_at'] ?? date('c'),
+        'updated_at' => date('c'),
+    ];
+
+    file_put_contents(SQUARE_MERCHANT_LOCK_FILE, json_encode($payload, JSON_PRETTY_PRINT));
 }
 
 /**

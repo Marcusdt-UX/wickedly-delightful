@@ -37,6 +37,20 @@ if (empty($tokenData['access_token'])) {
     exit;
 }
 
+$oauthMerchantId = trim((string)($tokenData['merchant_id'] ?? ''));
+if ($oauthMerchantId === '') {
+    echo 'Could not determine Square merchant ID. <a href="/admin/login.php">Try again</a>';
+    exit;
+}
+
+// Merchant lock enforcement: once locked, only that Square account can authorize.
+$lockedMerchantId = get_locked_merchant_id();
+if ($lockedMerchantId && $lockedMerchantId !== $oauthMerchantId) {
+    http_response_code(403);
+    echo 'This admin is locked to a different Square account. Please contact support. <a href="/admin/login.php">Back to login</a>';
+    exit;
+}
+
 // Calculate token expiry
 $expiresAt = !empty($tokenData['expires_at'])
     ? strtotime($tokenData['expires_at'])
@@ -46,13 +60,18 @@ $expiresAt = !empty($tokenData['expires_at'])
 save_square_token([
     'access_token'  => $tokenData['access_token'],
     'refresh_token' => $tokenData['refresh_token'] ?? '',
-    'merchant_id'   => $tokenData['merchant_id'] ?? '',
+    'merchant_id'   => $oauthMerchantId,
     'expires_at'    => $expiresAt,
     'token_type'    => $tokenData['token_type'] ?? 'bearer',
     'environment'   => SQUARE_ENV,
     'obtained_at'   => date('c'),
     'location_id'   => '', // populated below after fetching locations
 ]);
+
+// First successful production login binds the admin to this merchant account.
+if (!$lockedMerchantId) {
+    set_locked_merchant_id($oauthMerchantId);
+}
 
 // Fetch merchant info for the session
 $merchantName = 'Admin';
@@ -108,7 +127,7 @@ if ($locationId) {
 }
 
 // Set session
-$_SESSION['square_merchant_id']   = $tokenData['merchant_id'] ?? '';
+$_SESSION['square_merchant_id']   = $oauthMerchantId;
 $_SESSION['square_merchant_name'] = $merchantName;
 $_SESSION['square_location_id']   = $locationId;
 $_SESSION['logged_in_at']         = time();
