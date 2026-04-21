@@ -75,6 +75,7 @@ save_square_token([
     'merchant_id'   => $merchantId,
     'expires_at'    => time() + 2592000, // sandbox tokens don't expire
     'token_type'    => 'bearer',
+    'environment'   => 'sandbox',
     'obtained_at'   => date('c'),
     'location_id'   => $locationId,
 ]);

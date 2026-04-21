@@ -21,6 +21,7 @@ $_SESSION['sandbox_csrf'] = $sandboxCsrf;
 $expired = isset($_GET['expired']);
 $authUrl = square_authorize_url($state);
 $isSandbox = SQUARE_ENV === 'sandbox';
+$prodNeedsCredentials = SQUARE_ENV === 'production' && strpos(SQUARE_APP_ID, 'sandbox-') === 0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -195,6 +196,12 @@ $isSandbox = SQUARE_ENV === 'sandbox';
       <?php if (!SQUARE_APP_ID || !SQUARE_APP_SECRET): ?>
       <div class="login-config-warning">
         Square OAuth not configured yet. Add your Application ID and Secret to <code>admin/config.php</code>.
+      </div>
+      <?php endif; ?>
+
+      <?php if ($prodNeedsCredentials): ?>
+      <div class="login-config-warning">
+        Production mode is enabled, but sandbox Square credentials are still configured. Update <code>SQUARE_APP_ID</code> and <code>SQUARE_APP_SECRET</code> in <code>admin/config.php</code> with your production app credentials.
       </div>
       <?php endif; ?>
 

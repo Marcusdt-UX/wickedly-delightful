@@ -49,6 +49,7 @@ save_square_token([
     'merchant_id'   => $tokenData['merchant_id'] ?? '',
     'expires_at'    => $expiresAt,
     'token_type'    => $tokenData['token_type'] ?? 'bearer',
+    'environment'   => SQUARE_ENV,
     'obtained_at'   => date('c'),
     'location_id'   => '', // populated below after fetching locations
 ]);

@@ -7,7 +7,7 @@
  */
 
 // Square environment: 'sandbox' or 'production'
-define('SQUARE_ENVIRONMENT', 'sandbox');
+define('SQUARE_ENVIRONMENT', 'production');
 
 // Token file written by admin OAuth flow
 define('SQUARE_TOKEN_FILE_PATH', __DIR__ . '/../.data/square-token.json');
@@ -16,6 +16,12 @@ define('SQUARE_TOKEN_FILE_PATH', __DIR__ . '/../.data/square-token.json');
 $_sqTokenData = file_exists(SQUARE_TOKEN_FILE_PATH)
     ? (json_decode(file_get_contents(SQUARE_TOKEN_FILE_PATH), true) ?: [])
     : [];
+
+// Require token environment to match current environment; this prevents stale sandbox tokens
+// from being used after switching to production mode (and vice versa).
+if (($_sqTokenData['environment'] ?? '') !== SQUARE_ENVIRONMENT) {
+    $_sqTokenData = [];
+}
 
 // Access token: prefer OAuth token, fall back to manual
 define('SQUARE_ACCESS_TOKEN', $_sqTokenData['access_token'] ?? '');

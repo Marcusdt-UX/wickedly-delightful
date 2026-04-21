@@ -10,7 +10,7 @@ define('SQUARE_APP_ID', 'sandbox-sq0idb-mfiZ3JYyCV3SGazT9nwyBA');
 define('SQUARE_APP_SECRET', 'sandbox-sq0csb-N9AxezO0HrQCKH0vT6ggSSj9ucDYlxnRLKyrJPGz5cE');    // Application Secret
 
 // Square environment: 'production' or 'sandbox'
-define('SQUARE_ENV', 'sandbox');
+define('SQUARE_ENV', 'production');
 
 // OAuth URLs
 define('SQUARE_OAUTH_BASE', SQUARE_ENV === 'production'
