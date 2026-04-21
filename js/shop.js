@@ -138,6 +138,9 @@
     if (cartSubtotal) cartSubtotal.textContent = '$' + (subtotalCents / 100).toFixed(2);
     if (cartShippingAmount) cartShippingAmount.textContent = '$' + (shippingCents / 100).toFixed(2);
     if (cartTotal) cartTotal.textContent = '$' + (totalCents / 100).toFixed(2);
+
+    // Keep product card controls aligned with current cart quantities.
+    document.querySelectorAll('.shop-card').forEach(card => syncQtyControl(card));
   }
 
   function getSelectedVariationStock(card) {
