@@ -4,14 +4,19 @@
   const productsGrid = document.getElementById("products-grid");
   const products = [
     {
-      name: "Vanilla Bean Buttercream",
-      description: "Rich, creamy vanilla with warm buttercream sweetness.",
+      name: "Black Raspberry Vanilla",
+      description: "Juicy black raspberry wrapped in smooth vanilla cream.",
       image: "assets/homepage-rotation/wickedly-rotation-01.jpg"
     },
     {
-      name: "Black Raspberry Vanilla",
-      description: "Juicy dark berries swirled with smooth vanilla cream.",
+      name: "Vanilla Bean Buttercream",
+      description: "Rich, creamy vanilla with warm buttercream sweetness.",
       image: "assets/homepage-rotation/wickedly-rotation-02.jpg"
+    },
+    {
+      name: "Eye Candy",
+      description: "Sugary, colorful sweetness with a fun fruity twist.",
+      image: "assets/homepage-rotation/wickedly-rotation-03.jpg"
     },
     {
       name: "Bibbity Bobbity Boo",
@@ -19,38 +24,33 @@
       image: "assets/homepage-rotation/wickedly-rotation-04.jpg"
     },
     {
-      name: "Fresh Cotton",
-      description: "Clean laundry freshness with airy, comforting softness.",
+      name: "Lavender",
+      description: "Calming lavender blossoms for a restful atmosphere.",
       image: "assets/homepage-rotation/wickedly-rotation-05.jpg"
     },
     {
-      name: "Clean Linen O.E.",
-      description: "Crisp linen and fresh-air notes for a just-cleaned vibe.",
-      image: "assets/homepage-rotation/wickedly-rotation-06.jpg"
-    },
-    {
-      name: "Banana Pudding Parfait",
-      description: "Creamy banana dessert layered with warm vanilla sweetness.",
+      name: "Fresh Cotton",
+      description: "Clean laundry freshness with airy, comforting softness.",
       image: "assets/homepage-rotation/wickedly-rotation-07.jpg"
-    },
-    {
-      name: "Lemon Pound Cake",
-      description: "Bright lemon zest baked into buttery cake goodness.",
-      image: "assets/homepage-rotation/wickedly-rotation-08.jpg"
-    },
-    {
-      name: "Eye Candy",
-      description: "Sugary, colorful sweetness with a fun fruity twist.",
-      image: "assets/homepage-rotation/wickedly-rotation-09.jpg"
-    },
-    {
-      name: "Stress Relief",
-      description: "A soothing spa-style blend designed to calm the mood.",
-      image: "assets/homepage-rotation/wickedly-rotation-10.jpg"
     },
     {
       name: "Pumpkin Pecan Waffles",
       description: "Warm waffles, toasted pecans, and cozy pumpkin spice.",
+      image: "assets/homepage-rotation/wickedly-rotation-08.jpg"
+    },
+    {
+      name: "Watermelon",
+      description: "Juicy summer melon with bright, refreshing sweetness.",
+      image: "assets/homepage-rotation/wickedly-rotation-09.jpg"
+    },
+    {
+      name: "Jamaica Me Crazy",
+      description: "A tropical fruit blend with beachy, vacation energy.",
+      image: "assets/homepage-rotation/wickedly-rotation-10.jpg"
+    },
+    {
+      name: "Clean Linen O.E.",
+      description: "Crisp linen and fresh-air notes for a just-cleaned vibe.",
       image: "assets/homepage-rotation/wickedly-rotation-11.jpg"
     },
     {
@@ -59,13 +59,13 @@
       image: "assets/homepage-rotation/wickedly-rotation-12.jpg"
     },
     {
-      name: "Watermelon",
-      description: "Juicy summer melon with bright, refreshing sweetness.",
+      name: "Cereal Milk Swirl",
+      description: "Sweet milk and cereal notes that feel nostalgic and fun.",
       image: "assets/homepage-rotation/wickedly-rotation-13.jpg"
     },
     {
-      name: "Cereal Milk Swirl",
-      description: "Sweet milk and cereal notes that feel nostalgic and fun.",
+      name: "Banana Pudding Parfait",
+      description: "Creamy banana dessert layered with warm vanilla sweetness.",
       image: "assets/homepage-rotation/wickedly-rotation-14.jpg"
     },
     {
@@ -74,13 +74,13 @@
       image: "assets/homepage-rotation/wickedly-rotation-15.jpg"
     },
     {
-      name: "Jamaica Me Crazy",
-      description: "A tropical fruit blend with beachy, vacation energy.",
+      name: "Stress Relief",
+      description: "A soothing spa-style blend designed to calm the mood.",
       image: "assets/homepage-rotation/wickedly-rotation-16.jpg"
     },
     {
-      name: "Lavender",
-      description: "Calming lavender blossoms for a restful atmosphere.",
+      name: "Lemon Pound Cake",
+      description: "Bright lemon zest baked into buttery cake goodness.",
       image: "assets/homepage-rotation/wickedly-rotation-17.jpg"
     }
   ];
