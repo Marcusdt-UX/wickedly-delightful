@@ -20,6 +20,7 @@ $_SESSION['sandbox_csrf'] = $sandboxCsrf;
 
 $expired = isset($_GET['expired']);
 $unauthorized = isset($_GET['unauthorized']);
+$reset = isset($_GET['reset']);
 $authUrl = square_authorize_url($state);
 $isSandbox = SQUARE_ENV === 'sandbox';
 $prodNeedsCredentials = SQUARE_ENV === 'production' && strpos(SQUARE_APP_ID, 'sandbox-') === 0;
@@ -212,6 +213,10 @@ $prodNeedsCredentials = SQUARE_ENV === 'production' && strpos(SQUARE_APP_ID, 'sa
 
       <?php if ($unauthorized): ?>
       <div class="login-notice">This admin is locked to a different Square account. Please use the authorized client Square login.</div>
+      <?php endif; ?>
+
+      <?php if ($reset): ?>
+      <div class="login-notice" style="background:rgba(46,204,113,0.1);border-color:rgba(46,204,113,0.25);color:#2ecc71;">Square connection reset. Sign in with the Square account you want to use now.</div>
       <?php endif; ?>
 
       <div class="login-divider">AUTHENTICATE</div>

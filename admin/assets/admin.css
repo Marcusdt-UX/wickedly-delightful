@@ -167,6 +167,28 @@
   box-shadow: 0 0 15px rgba(155, 17, 30, 0.3);
 }
 
+.admin-action-danger {
+  background: rgba(231, 76, 60, 0.08);
+  border-color: rgba(231, 76, 60, 0.35);
+  color: #ffb3ab;
+}
+
+.admin-action-danger svg {
+  color: #e74c3c;
+}
+
+.admin-action-danger:hover {
+  border-color: rgba(231, 76, 60, 0.6);
+  box-shadow: 0 0 18px rgba(231, 76, 60, 0.22);
+}
+
+.admin-help {
+  margin-top: 0.65rem;
+  font-size: 0.74rem;
+  color: var(--muted);
+  line-height: 1.35;
+}
+
 /* --- Responsive --- */
 @media (max-width: 768px) {
   .admin-grid {

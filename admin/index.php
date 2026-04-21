@@ -5,6 +5,11 @@
  */
 require_once __DIR__ . '/auth.php';
 
+if (empty($_SESSION['admin_reset_csrf'])) {
+  $_SESSION['admin_reset_csrf'] = bin2hex(random_bytes(20));
+}
+$adminResetCsrf = $_SESSION['admin_reset_csrf'];
+
 // Get token info
 $tokenData = get_square_token();
 $hasToken = !empty($tokenData['access_token']);
@@ -206,6 +211,15 @@ if ($hasToken) {
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
               Square Dashboard
             </a>
+
+            <form method="POST" action="/admin/reset-square-connection.php" onsubmit="return confirm('This will disconnect the current Square account and unlock admin for a new account. Continue?');">
+              <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($adminResetCsrf); ?>" />
+              <button type="submit" class="admin-action admin-action-danger btn-neumorphic">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/></svg>
+                Reset Square Connection
+              </button>
+            </form>
+            <p class="admin-help">Use only when intentionally switching to a different Square account.</p>
           </div>
         </div>
 

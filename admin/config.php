@@ -94,6 +94,18 @@ function set_locked_merchant_id(string $merchantId): void {
 }
 
 /**
+ * Clear saved Square credentials + merchant lock (used for intentional account switch).
+ */
+function clear_square_connection(): void {
+    if (file_exists(SQUARE_TOKEN_FILE)) {
+        @unlink(SQUARE_TOKEN_FILE);
+    }
+    if (file_exists(SQUARE_MERCHANT_LOCK_FILE)) {
+        @unlink(SQUARE_MERCHANT_LOCK_FILE);
+    }
+}
+
+/**
  * Build the Square OAuth authorize URL.
  */
 function square_authorize_url(string $state): string {
