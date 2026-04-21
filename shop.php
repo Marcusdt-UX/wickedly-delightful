@@ -8,79 +8,15 @@
 $products = [];
 $apiError = null;
 
-$configPath = __DIR__ . '/api/square-config.php';
+$configPath = __DIR__ . '/api/square-catalog-data.php';
 if (file_exists($configPath)) {
     require_once $configPath;
     if (defined('SQUARE_ACCESS_TOKEN') && SQUARE_ACCESS_TOKEN) {
-        $cached = square_cache_get('catalog_products');
-        if ($cached) {
-            $products = $cached['products'] ?? [];
-        } else {
-            $catalog = square_request('/catalog/list?types=ITEM,IMAGE');
-            if (!isset($catalog['error'])) {
-                // Build the same structure as the API endpoint
-                $objects = $catalog['objects'] ?? [];
-                $images = [];
-                foreach ($objects as $obj) {
-                    if ($obj['type'] === 'IMAGE') {
-                        $images[$obj['id']] = $obj['image_data']['url'] ?? '';
-                    }
-                }
-                $variationIds = [];
-                foreach ($objects as $obj) {
-                    if ($obj['type'] !== 'ITEM') continue;
-                    $item = $obj['item_data'];
-                    $variations = [];
-                    foreach ($item['variations'] ?? [] as $v) {
-                        $vid = $v['id'];
-                        $vdata = $v['item_variation_data'];
-                        $variationIds[] = $vid;
-                        $priceMoney = $vdata['price_money'] ?? null;
-                        $price = $priceMoney ? intval($priceMoney['amount']) : 0;
-                        $variations[] = [
-                            'id' => $vid,
-                            'name' => $vdata['name'] ?? 'Regular',
-                            'price' => $price,
-                            'currency' => $priceMoney['currency'] ?? 'USD',
-                            'sku' => $vdata['sku'] ?? '',
-                        ];
-                    }
-                    $imageUrl = '';
-                    $imageIds = $item['image_ids'] ?? (isset($obj['image_id']) ? [$obj['image_id']] : []);
-                    foreach ($imageIds as $imgId) {
-                        if (isset($images[$imgId])) { $imageUrl = $images[$imgId]; break; }
-                    }
-                    $products[] = [
-                        'id' => $obj['id'],
-                        'name' => $item['name'] ?? '',
-                        'description' => $item['description'] ?? $item['description_html'] ?? '',
-                        'image' => $imageUrl,
-                        'variations' => $variations,
-                    ];
-                }
-                // Get inventory
-                if (!empty($variationIds)) {
-                    $inventory = square_request('/inventory/counts/batch-retrieve', 'POST', [
-                        'catalog_object_ids' => $variationIds,
-                        'location_ids' => [SQUARE_LOCATION_ID],
-                    ]);
-                    $stockMap = [];
-                    foreach ($inventory['counts'] ?? [] as $count) {
-                        $stockMap[$count['catalog_object_id']] = (float)($count['quantity'] ?? 0);
-                    }
-                    foreach ($products as &$p) {
-                        foreach ($p['variations'] as &$v) {
-                            $v['stock'] = $stockMap[$v['id']] ?? 0;
-                            $v['in_stock'] = $v['stock'] > 0;
-                        }
-                    }
-                    unset($p, $v);
-                }
-                usort($products, fn($a, $b) => strcmp($a['name'], $b['name']));
-                square_cache_set('catalog_products', ['products' => $products]);
-            } else {
-                $apiError = $catalog['error'];
-            }
+    $catalogResult = square_get_catalog_products(false);
+    if (!isset($catalogResult['error'])) {
+      $products = $catalogResult['products'] ?? [];
+    } else {
+      $apiError = $catalogResult['error'];
         }
     }
 }
@@ -247,9 +183,17 @@ $checkoutComplete = isset($_GET['checkout']) && $_GET['checkout'] === 'complete'
 
             <div class="shop-card-body">
               <div class="about-accent-line"></div>
-              <h3 class="shop-card-title"><?php echo htmlspecialchars($product['name']); ?></h3>
+              <h3 class="shop-card-title">
+                <a href="<?php echo htmlspecialchars($product['product_url'] ?? ('/product.php?item=' . rawurlencode($product['id'] ?? ''))); ?>" class="shop-card-title-link">
+                  <?php echo htmlspecialchars($product['name']); ?>
+                </a>
+              </h3>
               <?php if ($product['description']): ?>
               <p class="shop-card-desc"><?php echo htmlspecialchars(strip_tags($product['description'])); ?></p>
+              <?php endif; ?>
+
+              <?php if (!empty($product['category'])): ?>
+              <p class="shop-card-category"><?php echo htmlspecialchars($product['category']); ?></p>
               <?php endif; ?>
 
               <?php
@@ -296,6 +240,7 @@ $checkoutComplete = isset($_GET['checkout']) && $_GET['checkout'] === 'complete'
                   <?php echo $inStock ? 'Add to Cart' : 'Sold Out'; ?>
                 </button>
               </div>
+              <a class="shop-details-link" href="<?php echo htmlspecialchars($product['product_url'] ?? ('/product.php?item=' . rawurlencode($product['id'] ?? ''))); ?>">View Item Details</a>
               <?php endif; ?>
             </div>
           </div>

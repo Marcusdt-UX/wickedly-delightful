@@ -364,4 +364,9 @@
 
   // Initial render
   renderCart();
+
+  // Re-render cart when another script (e.g. product.js) updates localStorage
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'wds_cart') renderCart();
+  });
 })();
