@@ -48,6 +48,7 @@ if (empty($cartItems)) {
 
 // Build order line items
 $lineItems = [];
+$requestedByVariation = [];
 foreach ($cartItems as $ci) {
     $variationId = $ci['variation_id'] ?? '';
     $quantity = max(1, intval($ci['quantity'] ?? 1));
@@ -60,11 +61,54 @@ foreach ($cartItems as $ci) {
         'quantity'         => (string) $quantity,
         'catalog_object_id' => $variationId,
     ];
+
+    if (!isset($requestedByVariation[$variationId])) {
+        $requestedByVariation[$variationId] = 0;
+    }
+    $requestedByVariation[$variationId] += $quantity;
 }
 
 if (empty($lineItems)) {
     http_response_code(400);
     echo json_encode(['error' => 'No valid items']);
+    exit;
+}
+
+// Validate requested quantities against live inventory to prevent overselling.
+$inventory = square_request('/inventory/counts/batch-retrieve', 'POST', [
+    'catalog_object_ids' => array_keys($requestedByVariation),
+    'location_ids' => [SQUARE_LOCATION_ID],
+]);
+
+if (isset($inventory['error'])) {
+    http_response_code(502);
+    echo json_encode(['error' => $inventory['error']]);
+    exit;
+}
+
+$availableByVariation = [];
+foreach ($inventory['counts'] ?? [] as $count) {
+    $availableByVariation[$count['catalog_object_id']] = (float) ($count['quantity'] ?? 0);
+}
+
+$insufficient = [];
+foreach ($requestedByVariation as $variationId => $requestedQty) {
+    $availableQty = (int) floor($availableByVariation[$variationId] ?? 0);
+    if ($requestedQty > $availableQty) {
+        $insufficient[] = [
+            'variation_id' => $variationId,
+            'requested' => $requestedQty,
+            'available' => $availableQty,
+        ];
+    }
+}
+
+if (!empty($insufficient)) {
+    http_response_code(409);
+    echo json_encode([
+        'error' => 'Some items are no longer available in the requested quantity. Please update your cart and try again.',
+        'insufficient_items' => $insufficient,
+    ]);
     exit;
 }
 

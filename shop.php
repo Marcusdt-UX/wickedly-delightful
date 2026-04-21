@@ -273,7 +273,8 @@ $checkoutComplete = isset($_GET['checkout']) && $_GET['checkout'] === 'complete'
                 <?php foreach ($product['variations'] as $v): ?>
                 <option value="<?php echo htmlspecialchars($v['id']); ?>"
                         data-price="<?php echo $v['price']; ?>"
-                        data-in-stock="<?php echo ($v['in_stock'] ?? true) ? '1' : '0'; ?>">
+                        data-in-stock="<?php echo ($v['in_stock'] ?? true) ? '1' : '0'; ?>"
+                        data-stock="<?php echo intval($v['stock'] ?? 0); ?>">
                   <?php echo htmlspecialchars($v['name']); ?> — $<?php echo number_format($v['price'] / 100, 2); ?>
                 </option>
                 <?php endforeach; ?>
@@ -290,6 +291,7 @@ $checkoutComplete = isset($_GET['checkout']) && $_GET['checkout'] === 'complete'
                         data-variation-id="<?php echo htmlspecialchars($variation['id']); ?>"
                         data-product-name="<?php echo htmlspecialchars($product['name']); ?>"
                         data-price="<?php echo $variation['price']; ?>"
+                        data-stock="<?php echo intval($variation['stock'] ?? 0); ?>"
                         <?php echo !$inStock ? 'disabled' : ''; ?>>
                   <?php echo $inStock ? 'Add to Cart' : 'Sold Out'; ?>
                 </button>

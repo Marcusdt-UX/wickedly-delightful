@@ -20,6 +20,11 @@
     localStorage.setItem(CART_KEY, JSON.stringify(cart));
   }
 
+  function getCartQtyForVariation(variationId) {
+    const existing = getCart().find(i => i.variationId === variationId);
+    return existing ? existing.qty : 0;
+  }
+
   function addToCart(variationId, name, priceCents, qty) {
     const cart = getCart();
     const existing = cart.find(i => i.variationId === variationId);
@@ -135,12 +140,58 @@
     if (cartTotal) cartTotal.textContent = '$' + (totalCents / 100).toFixed(2);
   }
 
+  function getSelectedVariationStock(card) {
+    const select = card.querySelector('.shop-variation');
+    if (select) {
+      const opt = select.options[select.selectedIndex];
+      return parseInt(opt?.dataset.stock || '0', 10);
+    }
+
+    const addBtn = card.querySelector('.add-to-cart');
+    return parseInt(addBtn?.dataset.stock || '0', 10);
+  }
+
+  function syncQtyControl(card) {
+    const qtyEl = card.querySelector('.qty-value');
+    const minusBtn = card.querySelector('.qty-btn[data-action="decrease"]');
+    const plusBtn = card.querySelector('.qty-btn[data-action="increase"]');
+    const addBtn = card.querySelector('.add-to-cart');
+
+    if (!qtyEl || !addBtn) return;
+
+    const selectedVariationId = addBtn.dataset.variationId;
+    const stock = getSelectedVariationStock(card);
+    const alreadyInCart = selectedVariationId ? getCartQtyForVariation(selectedVariationId) : 0;
+    const remaining = Math.max(0, stock - alreadyInCart);
+
+    let qty = parseInt(qtyEl.textContent || '1', 10);
+    qty = Math.max(1, qty);
+    if (remaining > 0 && qty > remaining) {
+      qty = remaining;
+    }
+    if (remaining === 0) {
+      qty = 1;
+    }
+    qtyEl.textContent = qty;
+
+    if (minusBtn) minusBtn.disabled = qty <= 1;
+    if (plusBtn) plusBtn.disabled = remaining <= 0 || qty >= remaining;
+
+    if (remaining <= 0) {
+      addBtn.disabled = true;
+      addBtn.textContent = stock > 0 ? 'Max in Cart' : 'Sold Out';
+    } else if (addBtn.textContent === 'Sold Out' || addBtn.textContent === 'Max in Cart') {
+      addBtn.disabled = false;
+      addBtn.textContent = 'Add to Cart';
+    }
+  }
+
   // ---- Add to Cart buttons ----
   document.querySelectorAll('.add-to-cart').forEach(btn => {
     btn.addEventListener('click', () => {
       const card = btn.closest('.shop-card');
       const qtyEl = card.querySelector('.qty-value');
-      const qty = parseInt(qtyEl?.textContent || '1', 10);
+      const requestedQty = parseInt(qtyEl?.textContent || '1', 10);
 
       // Check for variation select
       const select = card.querySelector('.shop-variation');
@@ -155,7 +206,23 @@
         name += ' — ' + opt.textContent.split('—')[0].trim();
       }
 
+      const stock = getSelectedVariationStock(card);
+      const alreadyInCart = getCartQtyForVariation(variationId);
+      const remaining = Math.max(0, stock - alreadyInCart);
+
+      if (remaining <= 0) {
+        alert('This item is fully allocated in your cart.');
+        syncQtyControl(card);
+        return;
+      }
+
+      const qty = Math.min(requestedQty, remaining);
+      if (qty < requestedQty) {
+        alert('Only ' + remaining + ' more available for this item right now.');
+      }
+
       addToCart(variationId, name, price, qty);
+      syncQtyControl(card);
 
       // Visual feedback
       const origText = btn.textContent;
@@ -171,11 +238,19 @@
   // ---- Quantity controls ----
   document.querySelectorAll('.qty-btn').forEach(btn => {
     btn.addEventListener('click', () => {
+      const card = btn.closest('.shop-card');
       const qtyEl = btn.closest('.qty-control').querySelector('.qty-value');
       let val = parseInt(qtyEl.textContent, 10);
-      if (btn.dataset.action === 'increase') val++;
+
+      const stock = getSelectedVariationStock(card);
+      const addBtn = card.querySelector('.add-to-cart');
+      const alreadyInCart = getCartQtyForVariation(addBtn?.dataset.variationId || '');
+      const remaining = Math.max(0, stock - alreadyInCart);
+
+      if (btn.dataset.action === 'increase' && val < remaining) val++;
       if (btn.dataset.action === 'decrease' && val > 1) val--;
       qtyEl.textContent = val;
+      syncQtyControl(card);
     });
   });
 
@@ -201,9 +276,12 @@
       if (addBtn) {
         addBtn.dataset.variationId = opt.value;
         addBtn.dataset.price = price;
+        addBtn.dataset.stock = opt.dataset.stock || '0';
         addBtn.disabled = !inStock;
         addBtn.textContent = inStock ? 'Add to Cart' : 'Sold Out';
       }
+
+      syncQtyControl(card);
     });
   });
 
@@ -252,6 +330,8 @@
   if (shippingSelect) {
     shippingSelect.addEventListener('change', renderCart);
   }
+
+  document.querySelectorAll('.shop-card').forEach(card => syncQtyControl(card));
 
   // ---- Clear cart on successful checkout return ----
   if (window.location.search.includes('checkout=complete')) {
