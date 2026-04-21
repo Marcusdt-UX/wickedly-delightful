@@ -9,14 +9,9 @@
       image: "assets/homepage-rotation/wickedly-rotation-01.jpg"
     },
     {
-      name: "Vanilla Bean Buttercream",
-      description: "A cozy bakery classic with smooth vanilla frosting notes.",
-      image: "assets/homepage-rotation/wickedly-rotation-02.jpg"
-    },
-    {
       name: "Black Raspberry Vanilla",
-      description: "Juicy dark berries swirled with soft vanilla cream.",
-      image: "assets/homepage-rotation/wickedly-rotation-03.jpg"
+      description: "Juicy dark berries swirled with smooth vanilla cream.",
+      image: "assets/homepage-rotation/wickedly-rotation-02.jpg"
     },
     {
       name: "Bibbity Bobbity Boo",
@@ -74,18 +69,18 @@
       image: "assets/homepage-rotation/wickedly-rotation-14.jpg"
     },
     {
+      name: "Over the Rainbow",
+      description: "A cheerful fruit-and-sugar medley with bright personality.",
+      image: "assets/homepage-rotation/wickedly-rotation-15.jpg"
+    },
+    {
       name: "Jamaica Me Crazy",
       description: "A tropical fruit blend with beachy, vacation energy.",
-      image: "assets/homepage-rotation/wickedly-rotation-15.jpg"
+      image: "assets/homepage-rotation/wickedly-rotation-16.jpg"
     },
     {
       name: "Lavender",
       description: "Calming lavender blossoms for a restful atmosphere.",
-      image: "assets/homepage-rotation/wickedly-rotation-16.jpg"
-    },
-    {
-      name: "Over the Rainbow",
-      description: "A cheerful fruit-and-sugar medley with bright personality.",
       image: "assets/homepage-rotation/wickedly-rotation-17.jpg"
     }
   ];
