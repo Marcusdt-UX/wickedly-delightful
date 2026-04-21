@@ -6,8 +6,8 @@
  */
 
 // Square OAuth Application credentials
-define('SQUARE_APP_ID', 'sandbox-sq0idb-mfiZ3JYyCV3SGazT9nwyBA');
-define('SQUARE_APP_SECRET', 'sandbox-sq0csb-N9AxezO0HrQCKH0vT6ggSSj9ucDYlxnRLKyrJPGz5cE');    // Application Secret
+define('SQUARE_APP_ID', 'sq0idp-U_BPyjN4F54BpaZfzGCzHA');
+define('SQUARE_APP_SECRET', 'sq0csp-c74Al-cpsUTE-bWf4pCw-YwDPyt6Ges84afBWQRQWYo');    // Application Secret
 
 // Square environment: 'production' or 'sandbox'
 define('SQUARE_ENV', 'production');
