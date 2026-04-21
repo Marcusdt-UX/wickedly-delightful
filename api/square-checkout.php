@@ -21,6 +21,24 @@ if (!SQUARE_ACCESS_TOKEN || !SQUARE_LOCATION_ID) {
 
 $input = json_decode(file_get_contents('php://input'), true);
 $cartItems = $input['items'] ?? [];
+$shippingMethod = strtolower(trim((string)($input['shipping_method'] ?? SHOP_DEFAULT_SHIPPING_METHOD)));
+
+$shippingMethods = defined('SHOP_SHIPPING_METHODS') ? SHOP_SHIPPING_METHODS : [];
+if (!$shippingMethods) {
+    $shippingMethods = [
+        'standard' => ['label' => 'Standard Shipping', 'amount' => 895],
+        'express' => ['label' => 'Express Shipping', 'amount' => 1595],
+        'pickup' => ['label' => 'Local Pickup', 'amount' => 0],
+    ];
+}
+
+if (!isset($shippingMethods[$shippingMethod])) {
+    $shippingMethod = defined('SHOP_DEFAULT_SHIPPING_METHOD') ? SHOP_DEFAULT_SHIPPING_METHOD : 'standard';
+}
+
+$shippingLabel = $shippingMethods[$shippingMethod]['label'] ?? 'Shipping';
+$shippingAmount = max(0, intval($shippingMethods[$shippingMethod]['amount'] ?? 0));
+$currency = defined('SHOP_CURRENCY') ? SHOP_CURRENCY : 'USD';
 
 if (empty($cartItems)) {
     http_response_code(400);
@@ -70,8 +88,21 @@ $payload = [
         'allow_tipping'               => false,
         'enable_coupon'               => false,
         'enable_loyalty'              => false,
+        'ask_for_shipping_address'    => (defined('SHOP_REQUIRE_SHIPPING_ADDRESS') ? SHOP_REQUIRE_SHIPPING_ADDRESS : true) && $shippingMethod !== 'pickup',
     ],
 ];
+
+if ($shippingAmount > 0) {
+    $payload['order']['service_charges'] = [[
+        'name' => $shippingLabel,
+        'amount_money' => [
+            'amount' => $shippingAmount,
+            'currency' => $currency,
+        ],
+        'calculation_phase' => 'SUBTOTAL_PHASE',
+        'taxable' => false,
+    ]];
+}
 
 $result = square_request('/online-checkout/payment-links', 'POST', $payload);
 
@@ -93,4 +124,6 @@ if (!$checkoutUrl) {
 echo json_encode([
     'checkout_url' => $checkoutUrl,
     'order_id'     => $link['order_id'] ?? '',
+    'shipping_method' => $shippingMethod,
+    'shipping_amount' => $shippingAmount,
 ]);

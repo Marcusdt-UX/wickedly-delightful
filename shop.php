@@ -338,6 +338,22 @@ $checkoutComplete = isset($_GET['checkout']) && $_GET['checkout'] === 'complete'
 
     <div class="cart-footer" id="cart-footer" style="display:none;">
       <div class="gradient-line"></div>
+      <div class="cart-shipping">
+        <label for="cart-shipping-method" class="cart-shipping-label">Shipping Method</label>
+        <select id="cart-shipping-method" class="cart-shipping-select input-neumorphic">
+          <option value="standard" data-amount="895">Standard Shipping (3-5 business days) — $8.95</option>
+          <option value="express" data-amount="1595">Express Shipping (1-2 business days) — $15.95</option>
+          <option value="pickup" data-amount="0">Local Pickup — Free</option>
+        </select>
+      </div>
+      <div class="cart-total cart-subtotal">
+        <span class="font-serif tracking-luxury">Subtotal</span>
+        <span class="cart-total-amount" id="cart-subtotal">$0.00</span>
+      </div>
+      <div class="cart-total cart-shipping-row">
+        <span class="font-serif tracking-luxury">Shipping</span>
+        <span class="cart-total-amount" id="cart-shipping-amount">$0.00</span>
+      </div>
       <div class="cart-total">
         <span class="font-serif tracking-luxury">Total</span>
         <span class="cart-total-amount text-glow-red" id="cart-total">$0.00</span>
@@ -348,6 +364,7 @@ $checkoutComplete = isset($_GET['checkout']) && $_GET['checkout'] === 'complete'
         </svg>
         Proceed to Checkout
       </button>
+      <p class="cart-shipping-note">Shipping address is collected securely on Square checkout.</p>
     </div>
   </aside>
 

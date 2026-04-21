@@ -52,8 +52,17 @@
   const cartEmpty   = document.getElementById('cart-empty');
   const cartFooter  = document.getElementById('cart-footer');
   const cartTotal   = document.getElementById('cart-total');
+  const cartSubtotal = document.getElementById('cart-subtotal');
+  const cartShippingAmount = document.getElementById('cart-shipping-amount');
   const cartCount   = document.getElementById('cart-count');
+  const shippingSelect = document.getElementById('cart-shipping-method');
   const checkoutBtn = document.getElementById('checkout-btn');
+
+  function getShippingAmountCents() {
+    if (!shippingSelect) return 0;
+    const selected = shippingSelect.options[shippingSelect.selectedIndex];
+    return parseInt(selected?.dataset.amount || '0', 10);
+  }
 
   function openCart() {
     cartDrawer.classList.add('open');
@@ -74,7 +83,9 @@
   function renderCart() {
     const cart = getCart();
     const totalItems = cart.reduce((s, i) => s + i.qty, 0);
-    const totalCents = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+    const subtotalCents = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+    const shippingCents = cart.length > 0 ? getShippingAmountCents() : 0;
+    const totalCents = subtotalCents + shippingCents;
 
     // Badge
     if (cartCount) {
@@ -119,9 +130,9 @@
     }
 
     // Total
-    if (cartTotal) {
-      cartTotal.textContent = '$' + (totalCents / 100).toFixed(2);
-    }
+    if (cartSubtotal) cartSubtotal.textContent = '$' + (subtotalCents / 100).toFixed(2);
+    if (cartShippingAmount) cartShippingAmount.textContent = '$' + (shippingCents / 100).toFixed(2);
+    if (cartTotal) cartTotal.textContent = '$' + (totalCents / 100).toFixed(2);
   }
 
   // ---- Add to Cart buttons ----
@@ -202,6 +213,8 @@
       const cart = getCart();
       if (cart.length === 0) return;
 
+      const shippingMethod = shippingSelect ? shippingSelect.value : 'standard';
+
       checkoutBtn.disabled = true;
       checkoutBtn.textContent = 'Processing...';
 
@@ -214,6 +227,7 @@
               variation_id: i.variationId,
               quantity: i.qty,
             })),
+            shipping_method: shippingMethod,
           }),
         });
 
@@ -233,6 +247,10 @@
         checkoutBtn.textContent = 'Proceed to Checkout';
       }
     });
+  }
+
+  if (shippingSelect) {
+    shippingSelect.addEventListener('change', renderCart);
   }
 
   // ---- Clear cart on successful checkout return ----

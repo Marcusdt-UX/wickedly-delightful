@@ -44,6 +44,25 @@ define('SQUARE_WEB_SDK_URL', SQUARE_ENVIRONMENT === 'production'
 // Square Application ID (for Web Payments SDK)
 define('SQUARE_APPLICATION_ID', '');
 
+// Storefront shipping settings for checkout links
+define('SHOP_CURRENCY', 'USD');
+define('SHOP_DEFAULT_SHIPPING_METHOD', 'standard');
+define('SHOP_REQUIRE_SHIPPING_ADDRESS', true);
+define('SHOP_SHIPPING_METHODS', [
+    'standard' => [
+        'label' => 'Standard Shipping (3-5 business days)',
+        'amount' => 895,
+    ],
+    'express' => [
+        'label' => 'Express Shipping (1-2 business days)',
+        'amount' => 1595,
+    ],
+    'pickup' => [
+        'label' => 'Local Pickup',
+        'amount' => 0,
+    ],
+]);
+
 // Cache duration in seconds (5 minutes)
 define('SQUARE_CACHE_TTL', 300);
 

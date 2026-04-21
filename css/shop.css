@@ -427,6 +427,50 @@
   padding: 1rem 1.5rem 1.5rem;
 }
 
+.cart-shipping {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding-top: 0.85rem;
+}
+
+.cart-shipping-label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.cart-shipping-select {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 0.35rem;
+  background: var(--background);
+  color: var(--foreground);
+  font-size: 0.85rem;
+  margin-bottom: 0.35rem;
+}
+
+.cart-subtotal,
+.cart-shipping-row {
+  font-size: 0.95rem;
+  padding: 0.6rem 0;
+}
+
+.cart-subtotal .cart-total-amount,
+.cart-shipping-row .cart-total-amount {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.cart-shipping-note {
+  margin-top: 0.65rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+  line-height: 1.35;
+}
+
 .cart-total {
   display: flex;
   justify-content: space-between;
