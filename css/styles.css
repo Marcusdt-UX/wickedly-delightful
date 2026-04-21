@@ -166,6 +166,178 @@ ul {
     inset -2px -2px 4px rgba(155, 17, 30, 0.05);
 }
 
+.products-rotator {
+  margin-top: 2.5rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(155, 17, 30, 0.18);
+  border-radius: 1.1rem;
+  overflow: hidden;
+}
+
+.products-rotator-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.products-rotator-kicker {
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.45rem;
+}
+
+.products-rotator-title {
+  font-size: clamp(1.25rem, 2vw, 1.8rem);
+  margin-bottom: 0.4rem;
+}
+
+.products-rotator-copy {
+  max-width: 42rem;
+  color: rgba(232, 232, 232, 0.72);
+}
+
+.products-rotator-controls {
+  display: flex;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.products-rotator-btn {
+  width: 2.9rem;
+  height: 2.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid rgba(155, 17, 30, 0.25);
+  background: linear-gradient(180deg, rgba(30, 30, 30, 0.96), rgba(12, 12, 12, 0.96));
+  color: var(--foreground);
+}
+
+.products-rotator-btn svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.products-rotator-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.35rem;
+}
+
+.products-rotator-pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.45rem 0.8rem;
+  background: rgba(155, 17, 30, 0.14);
+  border: 1px solid rgba(155, 17, 30, 0.28);
+  color: var(--foreground);
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+}
+
+.products-rotator-note {
+  color: rgba(232, 232, 232, 0.62);
+  font-size: 0.95rem;
+}
+
+.products-rotator-stage {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.1rem;
+}
+
+.products-rotator-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  animation: fadeIn 0.45s ease;
+}
+
+.products-rotator-frame {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #121212;
+  box-shadow:
+    0 16px 28px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.products-rotator-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.products-rotator-card:hover .products-rotator-frame img {
+  transform: scale(1.03);
+}
+
+.products-rotator-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, rgba(8, 8, 8, 0.55), transparent 40%),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05), transparent 25%);
+  pointer-events: none;
+}
+
+.products-rotator-caption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0 0.15rem;
+}
+
+.products-rotator-count {
+  font-family: 'Cinzel', serif;
+  font-size: 0.76rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.products-rotator-label {
+  color: rgba(232, 232, 232, 0.82);
+  font-size: 0.96rem;
+}
+
+@media (max-width: 1199px) {
+  .products-rotator-stage {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .products-rotator {
+    padding: 1.1rem;
+  }
+
+  .products-rotator-header {
+    flex-direction: column;
+  }
+
+  .products-rotator-controls {
+    align-self: flex-end;
+  }
+
+  .products-rotator-stage {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* --- Ornate Card --- */
 .ornate-card {
   position: relative;

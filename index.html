@@ -439,96 +439,36 @@
         <p class="section-subtitle">Beautiful fragrances for every mood and season</p>
       </div>
 
-      <div class="products-grid">
-        <!-- Lemon -->
-        <div class="product-card ornate-card ornate-corners reveal">
-          <span class="corner-bl"></span><span class="corner-br"></span>
-          <div class="product-image">
-            <img
-              src="assets/lemon.jpg"
-              alt="Lemon soy wax melt by Wickedly Delightful Scents"
-              loading="lazy"
-            />
-            <div class="product-image-overlay"></div>
+      <div class="products-rotator ornate-card ornate-corners reveal" id="products-rotator-shell">
+        <span class="corner-bl"></span><span class="corner-br"></span>
+
+        <div class="products-rotator-header">
+          <div>
+            <p class="products-rotator-kicker">Homepage Photo Rotation</p>
+            <h3 class="products-rotator-title">A larger product archive, always in motion</h3>
+            <p class="products-rotator-copy">The homepage now pulls from a broader set of current product photos instead of recycling the same few scents.</p>
           </div>
-          <div class="product-info">
-            <div class="about-accent-line"></div>
-            <h3>Lemon</h3>
-            <p>Bright, zesty citrus that fills your space with sunshine</p>
+
+          <div class="products-rotator-controls" aria-label="Product photo controls">
+            <button class="products-rotator-btn btn-neumorphic" id="products-rotator-prev" type="button" aria-label="Show previous product photos">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m15 18-6-6 6-6" />
+              </svg>
+            </button>
+            <button class="products-rotator-btn btn-neumorphic" id="products-rotator-next" type="button" aria-label="Show next product photos">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            </button>
           </div>
         </div>
 
-        <!-- Cotton Candy -->
-        <div class="product-card ornate-card ornate-corners reveal reveal-delay-1">
-          <span class="corner-bl"></span><span class="corner-br"></span>
-          <div class="product-image">
-            <img
-              src="assets/cotton-candy.jpg"
-              alt="Cotton Candy soy wax melt by Wickedly Delightful Scents"
-              loading="lazy"
-            />
-            <div class="product-image-overlay"></div>
-          </div>
-          <div class="product-info">
-            <div class="about-accent-line"></div>
-            <h3>Cotton Candy</h3>
-            <p>Sweet, playful spun-sugar bliss that takes you back to the carnival</p>
-          </div>
+        <div class="products-rotator-meta">
+          <span class="products-rotator-pill">17 photos in rotation</span>
+          <span class="products-rotator-note">Auto-advances every few seconds and reshuffles the homepage mood without leaving the site feeling static.</span>
         </div>
 
-        <!-- Lavender -->
-        <div class="product-card ornate-card ornate-corners reveal reveal-delay-2">
-          <span class="corner-bl"></span><span class="corner-br"></span>
-          <div class="product-image">
-            <img
-              src="assets/lavender.jpg"
-              alt="Lavender soy wax melt by Wickedly Delightful Scents"
-              loading="lazy"
-            />
-            <div class="product-image-overlay"></div>
-          </div>
-          <div class="product-info">
-            <div class="about-accent-line"></div>
-            <h3>Lavender</h3>
-            <p>Calming fields of French lavender for total relaxation</p>
-          </div>
-        </div>
-
-        <!-- Vanilla Bean Buttercream -->
-        <div class="product-card ornate-card ornate-corners reveal reveal-delay-3">
-          <span class="corner-bl"></span><span class="corner-br"></span>
-          <div class="product-image">
-            <img
-              src="assets/vanilla-bean-buttercream.jpg"
-              alt="Vanilla Bean Buttercream soy wax melt by Wickedly Delightful Scents"
-              loading="lazy"
-            />
-            <div class="product-image-overlay"></div>
-          </div>
-          <div class="product-info">
-            <div class="about-accent-line"></div>
-            <h3>Vanilla Bean Buttercream</h3>
-            <p>Rich, creamy vanilla with warm buttercream sweetness</p>
-          </div>
-        </div>
-
-        <!-- Black Raspberry Vanilla -->
-        <div class="product-card ornate-card ornate-corners reveal reveal-delay-4">
-          <span class="corner-bl"></span><span class="corner-br"></span>
-          <div class="product-image">
-            <img
-              src="assets/black-raspberry-vanilla.jpg"
-              alt="Black Raspberry Vanilla soy wax melt by Wickedly Delightful Scents"
-              loading="lazy"
-            />
-            <div class="product-image-overlay"></div>
-          </div>
-          <div class="product-info">
-            <div class="about-accent-line"></div>
-            <h3>Black Raspberry Vanilla</h3>
-            <p>Juicy dark berries swirled with smooth, creamy vanilla</p>
-          </div>
-        </div>
+        <div class="products-rotator-stage" id="products-rotator-stage" aria-live="polite"></div>
       </div>
 
       <div class="products-cta reveal">
