@@ -7,6 +7,20 @@ header('Content-Type: application/json');
 
 require_once __DIR__ . '/square-config.php';
 
+function square_checkout_uuid(string $prefix): string {
+    return $prefix . '-' . bin2hex(random_bytes(8));
+}
+
+function square_checkout_iso_timestamp(string $modifier = '+2 business days'): string {
+    try {
+        $date = new DateTimeImmutable($modifier, new DateTimeZone('UTC'));
+    } catch (Exception $exception) {
+        $date = new DateTimeImmutable('now', new DateTimeZone('UTC'));
+    }
+
+    return $date->format('Y-m-d\TH:i:s\Z');
+}
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     echo json_encode(['error' => 'POST required']);
@@ -58,6 +72,7 @@ foreach ($cartItems as $ci) {
     }
 
     $lineItems[] = [
+        'uid'              => square_checkout_uuid('line'),
         'quantity'         => (string) $quantity,
         'catalog_object_id' => $variationId,
     ];
@@ -121,12 +136,42 @@ $returnUrl = $protocol . '://' . $host . '/shop.php?checkout=complete';
 // Create checkout via Square Payment Links API
 $idempotencyKey = bin2hex(random_bytes(16));
 
+$order = [
+    'location_id' => SQUARE_LOCATION_ID,
+    'line_items'  => $lineItems,
+    'metadata'    => [
+        'shipping_method' => $shippingMethod,
+        'shipping_amount' => (string) $shippingAmount,
+    ],
+];
+
+if ($shippingMethod === 'pickup') {
+    $order['fulfillments'] = [[
+        'uid' => square_checkout_uuid('pickup'),
+        'type' => 'PICKUP',
+        'state' => 'PROPOSED',
+        'pickup_details' => [
+            'schedule_type' => 'ASAP',
+            'note' => 'Local pickup selected on storefront checkout.',
+        ],
+    ]];
+} else {
+    $order['fulfillments'] = [[
+        'uid' => square_checkout_uuid('shipment'),
+        'type' => 'SHIPMENT',
+        'state' => 'PROPOSED',
+        'shipment_details' => [
+            'shipping_type' => $shippingLabel,
+            'expected_shipped_at' => square_checkout_iso_timestamp(
+                $shippingMethod === 'express' ? '+1 business day' : '+3 business days'
+            ),
+        ],
+    ]];
+}
+
 $payload = [
     'idempotency_key' => $idempotencyKey,
-    'order' => [
-        'location_id' => SQUARE_LOCATION_ID,
-        'line_items'  => $lineItems,
-    ],
+    'order' => $order,
     'checkout_options' => [
         'redirect_url'                => $returnUrl,
         'allow_tipping'               => false,
@@ -138,6 +183,7 @@ $payload = [
 
 if ($shippingAmount > 0) {
     $payload['order']['service_charges'] = [[
+        'uid' => square_checkout_uuid('shipping'),
         'name' => $shippingLabel,
         'amount_money' => [
             'amount' => $shippingAmount,
