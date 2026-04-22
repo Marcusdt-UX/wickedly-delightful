@@ -8,12 +8,65 @@
   // ---- Cart State (persisted in localStorage) ----
   const CART_KEY = 'wds_cart';
 
-  function getCart() {
+  function readCart() {
     try {
       return JSON.parse(localStorage.getItem(CART_KEY)) || [];
     } catch {
       return [];
     }
+  }
+
+  function getInventoryLimitForVariation(variationId) {
+    if (!variationId) return null;
+
+    const matchingOption = document.querySelector('.shop-variation option[value="' + CSS.escape(variationId) + '"]');
+    if (matchingOption) {
+      return parseInt(matchingOption.dataset.stock || '0', 10);
+    }
+
+    const matchingButton = document.querySelector('.add-to-cart[data-variation-id="' + CSS.escape(variationId) + '"]');
+    if (matchingButton) {
+      return parseInt(matchingButton.dataset.stock || '0', 10);
+    }
+
+    return null;
+  }
+
+  function normalizeCart(cart) {
+    let changed = false;
+    const normalized = [];
+
+    cart.forEach((item) => {
+      const limit = getInventoryLimitForVariation(item.variationId);
+      if (limit === null) {
+        normalized.push(item);
+        return;
+      }
+
+      const qty = Math.max(0, Math.min(item.qty, limit));
+      if (qty !== item.qty) {
+        changed = true;
+      }
+
+      if (qty > 0) {
+        normalized.push({ ...item, qty });
+      } else {
+        changed = true;
+      }
+    });
+
+    return { cart: normalized, changed };
+  }
+
+  function getCart() {
+    const cart = readCart();
+    const normalized = normalizeCart(cart);
+
+    if (normalized.changed) {
+      saveCart(normalized.cart);
+    }
+
+    return normalized.cart;
   }
 
   function saveCart(cart) {
@@ -28,13 +81,24 @@
   function addToCart(variationId, name, priceCents, qty) {
     const cart = getCart();
     const existing = cart.find(i => i.variationId === variationId);
+    const limit = getInventoryLimitForVariation(variationId);
+    const currentQty = existing ? existing.qty : 0;
+    const maxAddable = limit === null ? qty : Math.max(0, limit - currentQty);
+    const safeQty = Math.max(0, Math.min(qty, maxAddable));
+
+    if (safeQty <= 0) {
+      renderCart();
+      return false;
+    }
+
     if (existing) {
-      existing.qty += qty;
+      existing.qty += safeQty;
     } else {
-      cart.push({ variationId, name, price: priceCents, qty });
+      cart.push({ variationId, name, price: priceCents, qty: safeQty });
     }
     saveCart(cart);
     renderCart();
+    return true;
   }
 
   function removeFromCart(variationId) {
@@ -224,7 +288,13 @@
         alert('Only ' + remaining + ' more available for this item right now.');
       }
 
-      addToCart(variationId, name, price, qty);
+      const added = addToCart(variationId, name, price, qty);
+      if (!added) {
+        alert('This item is fully allocated in your cart.');
+        syncQtyControl(card);
+        return;
+      }
+
       syncQtyControl(card);
 
       // Visual feedback

@@ -6,6 +6,8 @@
 (function () {
   'use strict';
 
+  const CART_KEY = 'wds_cart';
+
   // ---- Elements ----
   const addBtn       = document.getElementById('product-add-to-cart');
   const qtyValue     = document.getElementById('product-qty-value');
@@ -20,14 +22,48 @@
   if (!addBtn) return; // product not found page, nothing to wire
 
   // ---- Helpers shared with shop.js (already loaded) ----
-  function getCartQtyForVariation(variationId) {
+  function readCart() {
     try {
-      const cart = JSON.parse(localStorage.getItem('wds_cart')) || [];
-      const existing = cart.find(i => i.variationId === variationId);
-      return existing ? existing.qty : 0;
+      return JSON.parse(localStorage.getItem(CART_KEY)) || [];
     } catch {
-      return 0;
+      return [];
     }
+  }
+
+  function getCartQtyForVariation(variationId) {
+    const existing = readCart().find(i => i.variationId === variationId);
+    return existing ? existing.qty : 0;
+  }
+
+  function getCurrentLimit() {
+    return parseInt(addBtn.dataset.stock || '0', 10);
+  }
+
+  function normalizeCurrentVariationCart() {
+    const variationId = getCurrentVariationId();
+    const limit = getCurrentLimit();
+    const cart = readCart();
+    let changed = false;
+
+    const normalized = cart.flatMap((item) => {
+      if (item.variationId !== variationId) {
+        return [item];
+      }
+
+      const qty = Math.max(0, Math.min(item.qty, limit));
+      if (qty !== item.qty) {
+        changed = true;
+      }
+
+      return qty > 0 ? [{ ...item, qty }] : [];
+    });
+
+    if (changed) {
+      localStorage.setItem(CART_KEY, JSON.stringify(normalized));
+      window.dispatchEvent(new StorageEvent('storage', { key: CART_KEY }));
+    }
+
+    return normalized;
   }
 
   function getCurrentVariationId() {
@@ -39,10 +75,12 @@
   }
 
   function getCurrentStock() {
-    return parseInt(addBtn.dataset.stock || '0', 10);
+    return getCurrentLimit();
   }
 
   function syncControls() {
+    normalizeCurrentVariationCart();
+
     const variationId = getCurrentVariationId();
     const stock = getCurrentStock();
     const inCart = getCartQtyForVariation(variationId);
@@ -137,7 +175,7 @@
 
     // Add to cart via shop.js global (it exposes nothing, so read/write localStorage directly)
     try {
-      const cart = JSON.parse(localStorage.getItem('wds_cart')) || [];
+      const cart = readCart();
       const existing = cart.find(i => i.variationId === variationId);
       let cartName = productName;
       if (varSelect) {
@@ -151,13 +189,13 @@
       } else {
         cart.push({ variationId, name: cartName, price, qty });
       }
-      localStorage.setItem('wds_cart', JSON.stringify(cart));
+      localStorage.setItem(CART_KEY, JSON.stringify(cart));
     } catch {
       return;
     }
 
     // Trigger shop.js renderCart by dispatching storage event on same window
-    window.dispatchEvent(new StorageEvent('storage', { key: 'wds_cart' }));
+    window.dispatchEvent(new StorageEvent('storage', { key: CART_KEY }));
 
     // Open cart drawer
     const cartDrawer  = document.getElementById('cart-drawer');
