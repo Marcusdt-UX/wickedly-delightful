@@ -1344,30 +1344,32 @@ ul {
   color: var(--primary);
 }
 
-.social-icons {
-  display: flex;
-  gap: 1rem;
+.footer-social p {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
 }
 
-.social-icon {
-  width: 2.75rem;
-  height: 2.75rem;
-  display: flex;
+.footer-contact-link {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.65rem 1rem;
   background: var(--background);
   border: 2px solid var(--border);
   color: var(--primary);
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  text-transform: uppercase;
   transition: all 0.3s ease;
 }
 
-.social-icon:hover {
+.footer-contact-link:hover {
   border-color: var(--primary);
-}
-
-.social-icon svg {
-  width: 1.25rem;
-  height: 1.25rem;
+  color: var(--foreground);
 }
 
 .footer-bottom {
