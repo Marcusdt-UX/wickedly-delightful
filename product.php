@@ -439,8 +439,8 @@ $priceMax        = $product['price_max'] ?? 0;
     </div>
   </aside>
 
-  <script src="/js/main.js"></script>
-  <script src="/js/shop.js"></script>
+  <script src="/js/main.js?v=<?php echo filemtime(__DIR__ . '/js/main.js'); ?>"></script>
+  <script src="/js/shop.js?v=<?php echo filemtime(__DIR__ . '/js/shop.js'); ?>"></script>
   <script src="/js/product.js?v=<?php echo filemtime(__DIR__ . '/js/product.js'); ?>"></script>
 </body>
 </html>

@@ -384,7 +384,7 @@ $checkoutComplete = isset($_GET['checkout']) && $_GET['checkout'] === 'complete'
     Website designed by <a href="https://thomaspublishinghouse.com" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.5);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.15);transition:color 0.2s,border-color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.8)';this.style.borderColor='rgba(255,255,255,0.4)'" onmouseout="this.style.color='rgba(255,255,255,0.5)';this.style.borderColor='rgba(255,255,255,0.15)'">Thomas Publishing House</a>
   </div>
 
-  <script src="js/main.js"></script>
-  <script src="js/shop.js"></script>
+  <script src="js/main.js?v=<?php echo filemtime(__DIR__ . '/js/main.js'); ?>"></script>
+  <script src="js/shop.js?v=<?php echo filemtime(__DIR__ . '/js/shop.js'); ?>"></script>
 </body>
 </html>
